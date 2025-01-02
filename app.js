@@ -1,19 +1,16 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const app = express();
+const clientRoute = require('./routes/client');
+const adminRoute = require('./routes/admin');
 
 app.use(express.static(path.join(__dirname,'public')))
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
-// Routes
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Home Page', message: 'Welcome to My Website!' });
-});
+app.set('views','./views')
 
-app.get('/news-detail', (req, res) => {
-    res.render('news-detail', { title: 'About Page', message: 'This is the about page.' });
-});
-
+app.use('/',clientRoute)
+app.use('/admin',adminRoute)
 
 
 

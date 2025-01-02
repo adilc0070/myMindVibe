@@ -92,4 +92,5 @@ const availableslots=async(req,res)=>{
     }
 }
 
+
 module.exports = { register, login, logout,bookaslot };
