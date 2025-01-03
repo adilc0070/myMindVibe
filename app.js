@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const clientRoute = require('./routes/client');
 const adminRoute = require('./routes/admin');
+const connectDB = require('./middlewares/mongoDb');
+connectDB('mymindvibe');
+
 
 app.use(express.static(path.join(__dirname,'public')))
 app.set('views',path.join(__dirname,'views'))
