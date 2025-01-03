@@ -4,6 +4,7 @@ const path = require('path');
 
 const upload = require('../middlewares/multerConfig');
 const bookingRoute=require('./booking');
+const adminController = require('../controller/admin');
 
 const adminRoute = express();
 
@@ -21,6 +22,15 @@ adminRoute.set('views', './views/admin');
 adminRoute.get('/', (req, res) => {
     res.render('dashboard');
 });
+
+// Admin Login
+adminRoute.get('/getLogin', adminController.getLogin);
+adminRoute.post('/login', adminController.adminLogin);
+
+// Admin Register
+adminRoute.get('/getRegister', adminController.getRegister);
+adminRoute.post('/register', adminController.newAdmin);
+
 
 // Multiple File Upload
 adminRoute.post('/upload', upload.fields([
@@ -53,6 +63,9 @@ adminRoute.post('/uploadsingle', upload.single('adminFile'), (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
+
 
 // Centralized Error Handling
 adminRoute.use((err, req, res, next) => {
