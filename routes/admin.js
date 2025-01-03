@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const upload = require('../middlewares/multerConfig');
+const bookingRoute=require('./booking')
 
 const adminRoute = express();
 
@@ -9,7 +10,7 @@ const adminRoute = express();
 adminRoute.use(bodyParser.json());
 adminRoute.use(bodyParser.urlencoded({ extended: true }));
 adminRoute.use(express.static(path.join(__dirname, 'public')));
-
+adminRoute.use('/booking',bookingRoute)
 // Set View Engine
 adminRoute.set('view engine', 'ejs');
 adminRoute.set('views', './views/admin');

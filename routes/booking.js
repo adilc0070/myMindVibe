@@ -1,7 +1,6 @@
 const express = require('express');
-const Booking = require('../models/Booking');
 const bookingRoute = express();
-
+const Booking = require('../models/Booking');
 // 1. Create a new booking
 bookingRoute.post('/create', async (req, res) => {
     try {
