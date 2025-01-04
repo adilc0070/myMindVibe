@@ -5,6 +5,7 @@ const bookingSchema = new mongoose.Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     date: { type: Date, required: true },
+    time: { type: String, required: true },
     status: { type: String, default: 'Pending' },
     createdAt: { type: Date, default: Date.now },
 });

@@ -16,3 +16,5 @@ const newsSchema = new mongoose.Schema({
     newsShares: { type: Number, default: 0 },
 
 });
+
+module.exports = mongoose.model('news', newsSchema);

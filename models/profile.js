@@ -12,3 +12,5 @@ const profileSchema = new mongoose.Schema({
     socialMedia: { type: [String], default: [] },
     address: { type: String, required: true },
 });
+
+module.exports = mongoose.model('profile', profileSchema);
