@@ -9,5 +9,6 @@ const profileSchema = new mongoose.Schema({
     proffession: { type: String, required: true },
     profileStatus: { type: String, default: 'Active' },
     profileCreatedAt: { type: Date, default: Date.now },
-    
+    socialMedia: { type: [String], default: [] },
+    address: { type: String, required: true },
 });
