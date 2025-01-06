@@ -10,3 +10,5 @@ const userSchema = new mongoose.Schema({
     isVerified: { type: Boolean, default: false },
     lastBookingDate: { type: Date, default: Date.now },
 })
+
+module.exports = mongoose.model('user', userSchema);
