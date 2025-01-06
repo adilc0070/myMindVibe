@@ -1,5 +1,5 @@
-const user = require("../models/users");
-const slots = require("../models/slots");
+// const user = require("../models/users");
+// const slots = require("../models/slots");
 const bcrypt = require("bcrypt");
 
 const register = async (req, res) => {
