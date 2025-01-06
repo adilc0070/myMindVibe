@@ -13,7 +13,7 @@ const paginate = (req, res, next) => {
 // 1. Create a new booking
 const createBooking = async (req, res) => {
     try {
-        const { name, email, phone, date, department, message } = req.body;
+        const { name, email, phone, date, department, message,time } = req.body;
 
         const existingBooking = await Booking.findOne({ email, date });
         if (existingBooking) {
@@ -25,6 +25,7 @@ const createBooking = async (req, res) => {
             email,
             phone,
             date,
+            time,
             department,
             message,
         });

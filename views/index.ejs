@@ -372,10 +372,18 @@ http://www.tooplate.com/view/2098-health
                                       <span id="dateError" style="color: red;"></span>
                                   </div>
                           
-                                  <!-- Department -->
+                                  <!-- Time -->
                                   <div class="col-md-6 col-sm-6">
-                                      <label for="select">Select Department</label>
-                                      <select class="form-control" id="select" name="department" oninput="toggleSubmitButton()">
+                                      <label for="time"> Decide on Time</label>
+                                      <input type="time" name="time" class="form-control" id="time" oninput="toggleSubmitButton()">
+                                      <p><a href="#" class="fa fa-info-circle fa-lg"></a> Is it possible at that moment? If so, you will be informed.</p>
+                                      <span id="timeError" style="color: red;"></span>
+                                  </div>
+                          
+                                  <!-- Department -->
+                                  <div class="col-md-12 col-sm-12">
+                                      <label for="department">Select Department</label>
+                                      <select class="form-control" id="department" name="department" oninput="toggleSubmitButton()">
                                           <option value="">-- Select Department --</option>
                                           <option value="General Health">General Health</option>
                                           <option value="Cardiology">Cardiology</option>
