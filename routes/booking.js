@@ -14,15 +14,18 @@ const paginate = (req, res, next) => {
 // 1. Create a new booking
 bookingRoute.post('/create', async (req, res) => {
     try {
-        const { userName, email, phone, date, time, department, message } = req.body;
-
+        console.log('reached here');
+        
+        const { name, email, phone, date, time, department, message } = req.body;
+        console.log("req.body", req.body);
+        
         const existingBooking = await Booking.findOne({ email, date, time });
         if (existingBooking) {
             return res.status(400).json({ error: 'Booking already exists for the selected date and time' });
         }
 
         const newBooking = new Booking({
-            userName,
+            userName: name,
             email,
             phone,
             date,

@@ -344,7 +344,7 @@ http://www.tooplate.com/view/2098-health
 
                     <div class="col-md-6 col-sm-6">
                          <!-- CONTACT FORM HERE -->
-                         <form id="appointment-form" role="form" method="post" action="#">
+                         <form id="appointment-form" role="form" method="post" action="/booking/create">
                               <!-- SECTION TITLE -->
                               <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
                                   <h2>Make an appointment</h2>
@@ -375,12 +375,12 @@ http://www.tooplate.com/view/2098-health
                                   <!-- Department -->
                                   <div class="col-md-6 col-sm-6">
                                       <label for="select">Select Department</label>
-                                      <select class="form-control" id="select" oninput="toggleSubmitButton()">
+                                      <select class="form-control" id="select" name="department" oninput="toggleSubmitButton()">
                                           <option value="">-- Select Department --</option>
-                                          <option>General Health</option>
-                                          <option>Cardiology</option>
-                                          <option>Dental</option>
-                                          <option>Medical Research</option>
+                                          <option value="General Health">General Health</option>
+                                          <option value="Cardiology">Cardiology</option>
+                                          <option value="Dental">Dental</option>
+                                          <option value="Medical Research">Medical Research</option>
                                       </select>
                                       <span id="departmentError" style="color: red;"></span>
                                   </div>
