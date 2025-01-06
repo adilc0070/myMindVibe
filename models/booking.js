@@ -6,7 +6,9 @@ const bookingSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     date: { type: Date, required: true },
     time: { type: String, required: true },
+    department: { type: String, required: true },
     status: { type: String, default: 'Pending' },
+    message: { type: String, default: '' },
     createdAt: { type: Date, default: Date.now },
 });
 
