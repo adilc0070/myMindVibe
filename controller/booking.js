@@ -25,7 +25,7 @@ const createBooking = async (req, res) => {
             email,
             phone,
             date,
-            time,
+            time, 
             department,
             message,
         });
