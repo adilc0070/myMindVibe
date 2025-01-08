@@ -25,7 +25,7 @@ const createBooking = async (req, res) => {
             email,
             phone,
             date,
-            time, 
+            time,
             department,
             message,
         });
@@ -101,6 +101,8 @@ const listUserBookings = async (req, res) => {
     }
 };
 
+
+
 // 4. Export bookings (admin)
 const exportBookings = async (req, res) => {
     try {
@@ -158,6 +160,17 @@ const updateBooking = async (req, res) => {
     }
 };
 
+const listBookings=async (req,res)=>{
+    try {
+        const bookings = await Booking.find();
+        res.status(200).json(bookings);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+
+
 module.exports = {
     createBooking,
     listAdminBookings,
@@ -166,4 +179,5 @@ module.exports = {
     cancelBooking,
     updateBooking,
     paginate,
+    listBookings
 };
