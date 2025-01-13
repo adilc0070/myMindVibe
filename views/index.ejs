@@ -336,92 +336,143 @@ http://www.tooplate.com/view/2098-health
      <!-- MAKE AN APPOINTMENT -->
      <section id="appointment" data-stellar-background-ratio="3">
           <div class="container">
-               <div class="row">
-
-                    <div class="col-md-6 col-sm-6">
-                         <img src="images/appointment-image.jpg" class="img-responsive" alt="">
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                         <!-- CONTACT FORM HERE -->
-                         <form id="appointment-form" role="form" method="post" action="/booking/create">
-                              <!-- SECTION TITLE -->
-                              <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                                  <h2>Make an appointment</h2>
+              <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                      <img src="images/appointment-image.jpg" class="img-responsive" alt="">
+                  </div>
+      
+                  <div class="col-md-6 col-sm-6">
+                      <!-- Toggle Buttons -->
+                      <div style="margin-bottom: 20px;">
+                          <button id="appointmentButton" class="btn btn-primary" onclick="showForm('appointment')">Appointment</button>
+                          <button id="loginButton" class="btn btn-secondary" onclick="showForm('login')">Login</button>
+                      </div>
+      
+                      <!-- Appointment Form -->
+                      <form id="appointment-form" role="form" method="post" action="/booking/create">
+                          <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                              <h2>Make an appointment</h2>
+                          </div>
+                          <div class="wow fadeInUp" data-wow-delay="0.8s">
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" oninput="toggleSubmitButton()">
                               </div>
-                          
-                              <div class="wow fadeInUp" data-wow-delay="0.8s">
-                                  <!-- Name -->
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="name">Name</label>
-                                      <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" oninput="toggleSubmitButton()">
-                                      <span id="nameError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Email -->
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="email">Email</label>
-                                      <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" oninput="toggleSubmitButton()">
-                                      <span id="emailError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Date -->
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="date">Select Date</label>
-                                      <input type="date" name="date" class="form-control" id="date" oninput="toggleSubmitButton()">
-                                      <span id="dateError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Time -->
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="time"> Decide on Time</label>
-                                      <input type="time" name="time" class="form-control" id="time" oninput="toggleSubmitButton()">
-                                      <p><a href="#" class="fa fa-info-circle fa-lg"></a> Is it possible at that moment? If so, you will be informed.</p>
-                                      <span id="timeError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Department -->
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="department">Select Department</label>
-                                      <select class="form-control" id="department" name="department" oninput="toggleSubmitButton()">
-                                          <option value="">-- Select Department --</option>
-                                          <option value="General Health">General Health</option>
-                                          <option value="Cardiology">Cardiology</option>
-                                          <option value="Dental">Dental</option>
-                                          <option value="Medical Research">Medical Research</option>
-                                      </select>
-                                      <span id="departmentError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Phone Number -->
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="telephone">Phone Number</label>
-                                      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" oninput="toggleSubmitButton()">
-                                      <span id="phoneError" style="color: red;"></span>
-                                  </div>
-                          
-                                  <!-- Message -->
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="message">Additional Message</label>
-                                      <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message" oninput="toggleSubmitButton()"></textarea>
-                                      <span id="messageError" style="color: red;"></span>
-                                  </div>
-
-                                  <!-- Error Message Display -->
-                                   <div id="errorMessage" style="color: red; margin-top: 10px;"></div>
-                                  
-                          
-                                  <!-- Submit Button -->
-                                  <div class="col-md-12 col-sm-12">
-                                      <button type="submit" class="form-control" id="cf-submit" name="submit" disabled>Submit</button>
-                                  </div>
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="email">Email</label>
+                                  <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" oninput="toggleSubmitButton()">
                               </div>
-                          </form>
-                    </div>
-
-               </div>
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="date">Select Date</label>
+                                  <input type="date" name="date" class="form-control" id="date" oninput="toggleSubmitButton()">
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="time">Decide on Time</label>
+                                  <input type="time" name="time" class="form-control" id="time" oninput="toggleSubmitButton()">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="department">Select Department</label>
+                                  <select class="form-control" id="department" name="department" oninput="toggleSubmitButton()">
+                                      <option value="">-- Select Department --</option>
+                                      <option value="General Health">General Health</option>
+                                      <option value="Cardiology">Cardiology</option>
+                                      <option value="Dental">Dental</option>
+                                      <option value="Medical Research">Medical Research</option>
+                                  </select>
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="telephone">Phone Number</label>
+                                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" oninput="toggleSubmitButton()">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="message">Additional Message</label>
+                                  <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message" oninput="toggleSubmitButton()"></textarea>
+                              </div>
+                              
+                              <div class="col-md-12 col-sm-12">
+                                  <div id="errorMessage" style="color: red; margin-top: 10px;"></div>
+                                  <button type="submit" class="form-control" id="cf-submit" name="submit" disabled>Submit</button>
+                              </div>
+                          </div>
+                      </form>
+      
+                      <!-- Login Form -->
+                      <form id="login-form" style="display: none;" role="form" method="post" action="/login">
+                          <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                              <h2>Login</h2>
+                          </div>
+                          <div class="wow fadeInUp" data-wow-delay="0.8s">
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="login-email">Email</label>
+                                  <input type="email" class="form-control" id="login-email" name="email" placeholder="Your Email">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="login-password">Password</label>
+                                  <input type="password" class="form-control" id="login-password" name="password" placeholder="Your Password">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <button type="submit" class="form-control" id="login-submit" name="submit">Login</button>
+                              </div>
+                              <p style="margin-top: 10px; text-align: center;">
+                                  Don't have an account? <a href="#" onclick="showForm('register')">Register</a>
+                              </p>
+                          </div>
+                      </form>
+      
+                      <!-- Register Form -->
+                      <form id="register-form" style="display: none;" role="form" method="post" action="/register">
+                          <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                              <h2>Register</h2>
+                          </div>
+                          <div class="wow fadeInUp" data-wow-delay="0.8s">
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="register-name">Name</label>
+                                  <input type="text" class="form-control" id="register-name" name="name" placeholder="Full Name">
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                  <label for="register-email">Email</label>
+                                  <input type="email" class="form-control" id="register-email" name="email" placeholder="Your Email">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="register-phone">Phone Number</label>
+                                  <input type="tel" class="form-control" id="register-phone" name="phone" placeholder="Phone">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <label for="register-password">Password</label>
+                                  <input type="password" class="form-control" id="register-password" name="password" placeholder="Your Password">
+                              </div>
+                              <div class="col-md-12 col-sm-12">
+                                  <button type="submit" class="form-control" id="register-submit" name="submit">Register</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
           </div>
-     </section>
+      </section>
+      
+      <script>
+          function showForm(formType) {
+              const appointmentForm = document.getElementById('appointment-form');
+              const loginForm = document.getElementById('login-form');
+              const registerForm = document.getElementById('register-form');
+      
+              // Hide all forms
+              appointmentForm.style.display = 'none';
+              loginForm.style.display = 'none';
+              registerForm.style.display = 'none';
+      
+              // Show the selected form
+              if (formType === 'appointment') {
+                  appointmentForm.style.display = 'block';
+              } else if (formType === 'login') {
+                  loginForm.style.display = 'block';
+              } else if (formType === 'register') {
+                  registerForm.style.display = 'block';
+              }
+          }
+      </script>
+      
      
 
 
