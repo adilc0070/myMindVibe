@@ -1,0 +1,67 @@
+<%- include('../admin/layout/newHeader.ejs') -%>
+
+
+    <!-- Main Content Area -->
+
+        <!-- Dashboard Content -->
+        <div id="content-dashboard">
+            <div
+                class="bg-white p-4 rounded shadow-sm mb-4">
+                <div
+                    class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="h3 mb-1">Welcome Back,
+                            Dr. Smith!</h1>
+                        <p class="text-muted mb-0">Here's
+                            what's happening at your
+                            practice today.</p>
+                    </div>
+                    <div>
+                        <button
+                            class="btn btn-primary me-2">New
+                            Appointment</button>
+                        <button
+                            class="btn btn-light">Generate
+                            Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 col-lg-3">
+                    <div
+                        class="bg-white p-3 rounded shadow-sm">
+                        <h6 class="text-muted mb-1">Today's
+                            Appointments</h6>
+                        <h3 class="mb-0">8</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div
+                        class="bg-white p-3 rounded shadow-sm">
+                        <h6 class="text-muted mb-1">New
+                            Patients</h6>
+                        <h3 class="mb-0">3</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div
+                        class="bg-white p-3 rounded shadow-sm">
+                        <h6 class="text-muted mb-1">Total
+                            Patients</h6>
+                        <h3 class="mb-0">145</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div
+                        class="bg-white p-3 rounded shadow-sm">
+                        <h6 class="text-muted mb-1">Pending
+                            Reports</h6>
+                        <h3 class="mb-0">5</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <%- include('../admin/layout/newFooter.ejs') -%>

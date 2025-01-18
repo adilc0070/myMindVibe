@@ -1,0 +1,81 @@
+<%- include('../admin/layout/newHeader.ejs') -%>
+
+<!-- Departments Content -->
+<div id="content-departments">
+    <div
+        class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h4 mb-0">Department Management
+        </h2>
+        <button class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#addDepartmentModal">
+            <i class="bi bi-plus-lg"></i> Add
+            Department
+        </button>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div
+                class="bg-white p-4 rounded shadow-sm">
+                <h5>Adult Psychiatry</h5>
+                <p class="text-muted mb-3">Main
+                    department for adult mental
+                    health services</p>
+                <div
+                    class="d-flex justify-content-between align-items-center">
+                    <span
+                        class="badge bg-primary">12
+                        Staff</span>
+                    <div>
+                        <button
+                            class="btn btn-sm btn-outline-primary me-1">Edit</button>
+                        <button
+                            class="btn btn-sm btn-outline-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div
+                class="bg-white p-4 rounded shadow-sm">
+                <h5>Child Psychology</h5>
+                <p class="text-muted mb-3">
+                    Specialized care for children
+                    and adolescents</p>
+                <div
+                    class="d-flex justify-content-between align-items-center">
+                    <span class="badge bg-primary">8
+                        Staff</span>
+                    <div>
+                        <button
+                            class="btn btn-sm btn-outline-primary me-1">Edit</button>
+                        <button
+                            class="btn btn-sm btn-outline-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div
+                class="bg-white p-4 rounded shadow-sm">
+                <h5>Addiction Treatment</h5>
+                <p class="text-muted mb-3">Substance
+                    abuse and addiction services</p>
+                <div
+                    class="d-flex justify-content-between align-items-center">
+                    <span class="badge bg-primary">6
+                        Staff</span>
+                    <div>
+                        <button
+                            class="btn btn-sm btn-outline-primary me-1">Edit</button>
+                        <button
+                            class="btn btn-sm btn-outline-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../admin/layout/newFooter.ejs') -%>

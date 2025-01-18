@@ -1,0 +1,74 @@
+<%- include('../admin/layout/newHeader.ejs') -%>
+
+<!-- Users Content -->
+<div id="content-users">
+    <div
+        class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h4 mb-0">User Management</h2>
+        <button class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#addUserModal">
+            <i class="bi bi-plus-lg"></i> Add New
+            User
+        </button>
+    </div>
+
+    <div class="bg-white rounded shadow-sm">
+        <div class="p-3">
+            <div class="input-group mb-3">
+                <input type="text"
+                    class="form-control"
+                    placeholder="Search users...">
+                <button
+                    class="btn btn-outline-secondary"
+                    type="button">Search</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dr. John Smith</td>
+                        <td>Psychiatrist</td>
+                        <td>Adult Psychiatry</td>
+                        <td><span
+                                class="badge bg-success">Active</span>
+                        </td>
+                        <td>
+                            <button
+                                class="btn btn-sm btn-outline-primary me-1">Edit</button>
+                            <button
+                                class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Sarah Johnson</td>
+                        <td>Therapist</td>
+                        <td>Child Psychology</td>
+                        <td><span
+                                class="badge bg-success">Active</span>
+                        </td>
+                        <td>
+                            <button
+                                class="btn btn-sm btn-outline-primary me-1">Edit</button>
+                            <button
+                                class="btn btn-sm btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../admin/layout/newFooter.ejs') -%>

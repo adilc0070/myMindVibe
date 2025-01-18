@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychiatrist Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .sidebar {
+            min-height: 100vh;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .nav-link { color: #495057; }
+        .nav-link:hover { background-color: #f8f9fa; }
+        .nav-link.active {
+            background-color: #e9ecef;
+            color: #0d6efd;
+        }
+        #content-users, #content-bookings, #content-departments {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar (Same across all pages) -->
+            <div class="col-md-3 col-lg-2 sidebar p-0">
+                <div class="p-3 border-bottom">
+                    <h2 class="h4 mb-0">Admin Panel</h2>
+                </div>
+                
+                <div class="p-3 border-bottom">
+                    <div class="d-flex align-items-center">
+                        <img src="/api/placeholder/40/40" class="rounded-circle me-2" alt="Admin">
+                        <div>
+                            <p class="fw-bold mb-0">Dr. Smith</p>
+                            <small class="text-muted">Administrator</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav class="nav flex-column p-2">
+                    <a href="#" onclick="showPage('dashboard')" class="nav-link d-flex align-items-center py-2 active">
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    </a>
+                    <a href="#" onclick="showPage('users')" class="nav-link d-flex align-items-center py-2">
+                        <i class="bi bi-people me-2"></i> Users
+                    </a>
+                    <a href="#" onclick="showPage('bookings')" class="nav-link d-flex align-items-center py-2">
+                        <i class="bi bi-calendar-check me-2"></i> Bookings
+                    </a>
+                    <a href="#" onclick="showPage('departments')" class="nav-link d-flex align-items-center py-2">
+                        <i class="bi bi-building me-2"></i> Departments
+                    </a>
+                    <a href="#" class="nav-link d-flex align-items-center py-2">
+                        <i class="bi bi-gear me-2"></i> Settings
+                    </a>
+                </nav>
+            </div>
+
+            <main class="col-md-9 col-lg-10 p-4">

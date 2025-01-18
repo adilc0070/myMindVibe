@@ -20,7 +20,7 @@ adminRoute.set('views', './views/admin');
 
 // Admin Dashboard
 adminRoute.get('/', (req, res) => {
-    res.render('dashboard');
+    res.render('users');
 });
 
 // Admin Login
