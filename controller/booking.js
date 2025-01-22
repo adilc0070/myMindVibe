@@ -13,6 +13,7 @@ const paginate = (req, res, next) => {
 // 1. Create a new booking
 const createBooking = async (req, res) => {
     try {
+        console.log("req.body", req.body);
         const { name, email, phone, date, department, message,time } = req.body;
 
         const existingBooking = await Booking.findOne({ email, date });
@@ -31,6 +32,8 @@ const createBooking = async (req, res) => {
         });
 
         await newBooking.save();
+        console.log("newBooking", newBooking);
+        
         res.status(201).json({ message: 'Booking created successfully', booking: newBooking });
     } catch (error) {
         res.status(500).json({ error: 'Failed to create booking' });
