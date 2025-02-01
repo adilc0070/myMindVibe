@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectToDatabase = async (dbName) => {
     try {
-        const uri = `mongodb://localhost:27017/${dbName}`;    
+        const uri = `mongodb+srv://adilc0070:Habeeba123@cluster0.iitpy22.mongodb.net/${dbName}?retryWrites=true&w=majority`;    
         await mongoose.connect(uri);
         console.log('Connected to MongoDB successfully');
     } catch (error) {
