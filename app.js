@@ -18,7 +18,7 @@ app.use('/admin',adminRoute)
 
 
 // Start the server
-const PORT = process.env.PORT || 3001; // Dynamically select an available port
+const PORT = process.env.PORT || 3002; // Dynamically select an available port
 console.log(`Attempting to start server on port ${PORT}`);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
