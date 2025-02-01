@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema({
     department: { type: String, required: true },
     status: { type: String, default: 'Pending' },
     message: { type: String, default: '' },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now }, 
 });
 
 module.exports = mongoose.model('booking', bookingSchema);

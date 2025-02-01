@@ -9,5 +9,5 @@ const adminSchema = new mongoose.Schema({
     adminCreatedAt: { type: Date, default: Date.now },
     isBlocked: { type: Boolean, default: false },
 });
-
+ 
 module.exports = mongoose.model('admin', adminSchema);

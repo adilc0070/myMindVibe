@@ -14,7 +14,7 @@ const newsSchema = new mongoose.Schema({
     newsDislikes: { type: Number, default: 0 },
     newsComments: { type: Number, default: 0 },
     newsShares: { type: Number, default: 0 },
-
+ 
 });
 
 module.exports = mongoose.model('news', newsSchema);

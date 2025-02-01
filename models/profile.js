@@ -11,6 +11,6 @@ const profileSchema = new mongoose.Schema({
     profileCreatedAt: { type: Date, default: Date.now },
     socialMedia: { type: [String], default: [] },
     address: { type: String, required: true },
-});
+}); 
 
 module.exports = mongoose.model('profile', profileSchema);
