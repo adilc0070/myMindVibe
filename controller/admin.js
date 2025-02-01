@@ -1,4 +1,4 @@
-const adminSchema = require("../models/admin");
+const adminSchema = require("../models/Admin");
 const bcrypt = require("bcrypt");
 
 
