@@ -10,4 +10,4 @@ const adminSchema = new mongoose.Schema({
     isBlocked: { type: Boolean, default: false },
 });
  
-module.exports = mongoose.model('admin', adminSchema);
+module.exports = mongoose.model('admin', adminSchema);    
