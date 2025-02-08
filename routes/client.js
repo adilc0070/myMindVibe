@@ -14,7 +14,12 @@ clientRoute.set('views','./views')
 
 
 clientRoute.get('/',(req,res)=>{
-    res.render('index')
+    res.render('index',{
+        user:{
+            name:'Guest'
+            
+        }
+    })
 })
 
 clientRoute.get('/news-detail',(req,res)=>{

@@ -1,5 +1,5 @@
 // bookingController.js
-const Booking =  require('../models/Booking'); 
+const Booking = require('../models/Booking');
 
 const paginate = (req, res, next) => {
     req.pagination = {
@@ -13,9 +13,7 @@ const paginate = (req, res, next) => {
 // 1. Create a new booking
 const createBooking = async (req, res) => {
     try {
-        console.log("req.body", req.body);
-        const { name, email, phone, date, department, message,time } = req.body;
-
+        const { name, email, phone, date, department, message, time } = req.body;
         const existingBooking = await Booking.findOne({ email, date });
         if (existingBooking) {
             return res.status(400).json({ error: 'Booking already exists for the selected date and email' });
@@ -32,9 +30,9 @@ const createBooking = async (req, res) => {
         });
 
         await newBooking.save();
-        console.log("newBooking", newBooking);
-        
+
         res.status(201).json({ message: 'Booking created successfully', booking: newBooking });
+        
     } catch (error) {
         res.status(500).json({ error: 'Failed to create booking' });
     }
@@ -61,7 +59,7 @@ const listAdminBookings = async (req, res) => {
 
         const bookings = await Booking.find(query)
             .sort({ createdAt: -1 })
-            .skip(skip)
+            .skip(skip) 
             .limit(limit);
 
         const total = await Booking.countDocuments(query);
@@ -163,7 +161,7 @@ const updateBooking = async (req, res) => {
     }
 };
 
-const listBookings=async (req,res)=>{
+const listBookings = async (req, res) => {
     try {
         const bookings = await Booking.find();
         res.status(200).json(bookings);
