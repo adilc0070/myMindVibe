@@ -64,7 +64,7 @@ http://www.tooplate.com/view/2098-health
                          class="col-md-8 col-sm-7 text-align-right">
                          <span class="phone-icon"><i
                                    class="fa fa-phone"></i>
-                                   940 036 6533</span>
+                              940 036 6533</span>
                          <span class="date-icon"><i
                                    class="fa fa-calendar-plus-o"></i>
                               6:00 AM - 10:00 PM
@@ -119,19 +119,25 @@ http://www.tooplate.com/view/2098-health
                          <li><a href="#google-map"
                                    class="smoothScroll">Contact</a>
                          </li>
-                         <li class="appointment-btn"><a
-                                   href="#appointment">Make
-                                   an appointment</a></li>
-                                   <li class="login-btn">
-                                        <!-- <% if (user) { %>
-                                             <div class="col-md-6 col-sm-6">
-                                                  <i class="fa fa-user"/>
-                                                  <a href="/login">Login</a>
-                                             </div>
-                                        <% } else { %>
-                                        <a href="/logout">Logout</a>
-                                        <% } %> -->
-                                   </li>
+                         <li class="register-btn">
+                              <% if(!user.name){ %>
+                              <a
+                                   href="/logout"
+                                   class="smoothScroll">
+                                   <div class="btn btn-primary">
+                                        Logout
+                                   </div>
+                              </a>
+                              <% }else{ %>
+                              <a
+                                   href="/register"
+                                   class="smoothScroll">
+                                   <div class="btn btn-primary">
+                                         Register
+                                   </div>
+                              </a>
+                              <% } %>
+                         </li>
                     </ul>
                </div>
 
@@ -148,74 +154,158 @@ http://www.tooplate.com/view/2098-health
                     <div class="owl-carousel owl-theme">
                          <!-- Individual Counseling -->
                          <div class="item item-first">
-                             <div class="caption">
-                                 <div class="col-md-offset-1 col-md-10">
-                                     <h3>Overcoming Stress, Anxiety & Depression</h3>
-                                     <h1>Personalized One-on-One Counseling</h1>
-                                     <ul class="list-inline">
-                                         <li>Private & Confidential</li>
-                                         <li>Professional Counseling</li>
-                                         <li>Flexible Schedule</li>
-                                         <li>Evidence-Based Therapy</li>
-                                         <li>Compassionate Guidance</li>
-                                     </ul>
-                                     <a href="#appointment" class="section-btn btn btn-default smoothScroll">Schedule Your Session</a>
-                                 </div>
-                             </div>
+                              <div class="caption">
+                                   <div
+                                        class="col-md-offset-1 col-md-10">
+                                        <h3>Overcoming
+                                             Stress, Anxiety
+                                             & Depression
+                                        </h3>
+                                        <h1>Personalized
+                                             One-on-One
+                                             Counseling</h1>
+                                        <ul
+                                             class="list-inline">
+                                             <li>Private &
+                                                  Confidential
+                                             </li>
+                                             <li>Professional
+                                                  Counseling
+                                             </li>
+                                             <li>Flexible
+                                                  Schedule
+                                             </li>
+                                             <li>Evidence-Based
+                                                  Therapy
+                                             </li>
+                                             <li>Compassionate
+                                                  Guidance
+                                             </li>
+                                        </ul>
+                                        <a href="#appointment"
+                                             class="section-btn btn btn-default smoothScroll">Schedule
+                                             Your
+                                             Session</a>
+                                   </div>
+                              </div>
                          </div>
-                     
+
                          <!-- Group Support -->
                          <div class="item item-second">
-                             <div class="caption">
-                                 <div class="col-md-offset-1 col-md-10">
-                                     <h3>Connect, Share & Heal</h3>
-                                     <h1>Support Groups & Community Workshops</h1>
-                                     <ul class="list-inline">
-                                         <li>Peer Support & Shared Experiences</li>
-                                         <li>Expert-Led Group Therapy</li>
-                                         <li>Workshops for Emotional Growth</li>
-                                         <li>Safe & Non-Judgmental Space</li>
-                                     </ul>
-                                     <a href="#about" class="section-btn btn btn-default btn-gray smoothScroll">Join Now</a>
-                                 </div>
-                             </div>
+                              <div class="caption">
+                                   <div
+                                        class="col-md-offset-1 col-md-10">
+                                        <h3>Connect, Share &
+                                             Heal</h3>
+                                        <h1>Support Groups &
+                                             Community
+                                             Workshops</h1>
+                                        <ul
+                                             class="list-inline">
+                                             <li>Peer
+                                                  Support &
+                                                  Shared
+                                                  Experiences
+                                             </li>
+                                             <li>Expert-Led
+                                                  Group
+                                                  Therapy
+                                             </li>
+                                             <li>Workshops
+                                                  for
+                                                  Emotional
+                                                  Growth
+                                             </li>
+                                             <li>Safe &
+                                                  Non-Judgmental
+                                                  Space</li>
+                                        </ul>
+                                        <a href="#about"
+                                             class="section-btn btn btn-default btn-gray smoothScroll">Join
+                                             Now</a>
+                                   </div>
+                              </div>
                          </div>
-                     
+
                          <!-- Mindfulness Programs -->
                          <div class="item item-third">
-                             <div class="caption">
-                                 <div class="col-md-offset-1 col-md-10">
-                                     <h3>Calm Your Mind & Body</h3>
-                                     <h1>Transform Your Mind with Mindfulness</h1>
-                                     <ul class="list-inline">
-                                         <li>Meditation & Breathing Techniques</li>
-                                         <li>Stress Reduction Strategies</li>
-                                         <li>Increased Mental Clarity</li>
-                                         <li>Improved Emotional Balance</li>
-                                     </ul>
-                                     <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Start Your Journey</a>
-                                 </div>
-                             </div>
+                              <div class="caption">
+                                   <div
+                                        class="col-md-offset-1 col-md-10">
+                                        <h3>Calm Your Mind &
+                                             Body</h3>
+                                        <h1>Transform Your
+                                             Mind with
+                                             Mindfulness
+                                        </h1>
+                                        <ul
+                                             class="list-inline">
+                                             <li>Meditation
+                                                  &
+                                                  Breathing
+                                                  Techniques
+                                             </li>
+                                             <li>Stress
+                                                  Reduction
+                                                  Strategies
+                                             </li>
+                                             <li>Increased
+                                                  Mental
+                                                  Clarity
+                                             </li>
+                                             <li>Improved
+                                                  Emotional
+                                                  Balance
+                                             </li>
+                                        </ul>
+                                        <a href="#news"
+                                             class="section-btn btn btn-default btn-blue smoothScroll">Start
+                                             Your
+                                             Journey</a>
+                                   </div>
+                              </div>
                          </div>
-                     
+
                          <!-- Specialized Interventions -->
                          <div class="item item-fourth">
-                             <div class="caption">
-                                 <div class="col-md-offset-1 col-md-10">
-                                     <h3>Stronger Mind, Brighter Future</h3>
-                                     <h1>Tailored Therapy for Emotional Resilience</h1>
-                                     <ul class="list-inline">
-                                         <li>Trauma Therapy & PTSD Support</li>
-                                         <li>Emotional Balance & Coping Skills</li>
-                                         <li>Resilience & Personal Growth</li>
-                                         <li>Customized Therapy Plans</li>
-                                     </ul>
-                                     <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Start Your Journey</a>
-                                 </div>
-                             </div>
+                              <div class="caption">
+                                   <div
+                                        class="col-md-offset-1 col-md-10">
+                                        <h3>Stronger Mind,
+                                             Brighter Future
+                                        </h3>
+                                        <h1>Tailored Therapy
+                                             for Emotional
+                                             Resilience</h1>
+                                        <ul
+                                             class="list-inline">
+                                             <li>Trauma
+                                                  Therapy &
+                                                  PTSD
+                                                  Support
+                                             </li>
+                                             <li>Emotional
+                                                  Balance &
+                                                  Coping
+                                                  Skills
+                                             </li>
+                                             <li>Resilience
+                                                  & Personal
+                                                  Growth
+                                             </li>
+                                             <li>Customized
+                                                  Therapy
+                                                  Plans</li>
+                                        </ul>
+                                        <a href="#news"
+                                             class="section-btn btn btn-default btn-blue smoothScroll">Start
+                                             Your
+                                             Journey</a>
+                                   </div>
+                              </div>
                          </div>
-                     </div>
-                     
+                    </div>
+
 
                </div>
           </div>
@@ -309,43 +399,96 @@ http://www.tooplate.com/view/2098-health
 
      <section id="">
           <div class="container">
-              <div class="row">
-                  <div class="col-md-6 col-sm-6">
-                      <div class="about-info">
-                          <h2 class="wow fadeInUp" data-wow-delay="0.6s">
-                              WHY CHOOSE <i class="fa fa--square"></i> MINDVIBE?
-                          </h2>
-                          <div class="wow fadeInUp" data-wow-delay="0.8s">
-                              <ul class="content-text">
-                                  <li>Evidence-based therapeutic techniques.</li>
-                                  <li>A warm, non-judgmental environment.</li>
-                                  <li>Flexible online and offline sessions to meet your needs.</li>
-                                  <li>Affordable services designed to make mental health support accessible to everyone.</li>
-                              </ul>
-                          </div>
+               <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                         <div class="about-info">
+                              <h2 class="wow fadeInUp"
+                                   data-wow-delay="0.6s">
+                                   WHY CHOOSE <i
+                                        class="fa fa--square"></i>
+                                   MINDVIBE?
+                              </h2>
+                              <div class="wow fadeInUp"
+                                   data-wow-delay="0.8s">
+                                   <ul class="content-text">
+                                        <li>Evidence-based
+                                             therapeutic
+                                             techniques.
+                                        </li>
+                                        <li>A warm,
+                                             non-judgmental
+                                             environment.
+                                        </li>
+                                        <li>Flexible online
+                                             and offline
+                                             sessions to
+                                             meet your
+                                             needs.</li>
+                                        <li>Affordable
+                                             services
+                                             designed to
+                                             make mental
+                                             health support
+                                             accessible to
+                                             everyone.</li>
+                                   </ul>
+                              </div>
                          </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                         
-                         <h2 class="wow fadeInUp" data-wow-delay="1s">
-                             ABOUT <i class="fa fa--square"></i> SHAEZA MARIYEM PARAVAKKAL
+
+                         <h2 class="wow fadeInUp"
+                              data-wow-delay="1s">
+                              ABOUT <i
+                                   class="fa fa--square"></i>
+                              SHAEZA MARIYEM PARAVAKKAL
                          </h2>
-                         <div class="wow fadeInUp" data-wow-delay="1.2s">
-                             <p>Shaeza is not just a psychologist but also a mental health advocate inspired by her own personal experiences and challenges. Shaeza has transformed her journey into a mission to break the stigma around mental health and ensure psychological support reaches even the underserved.</p>
-                             <p>Through MindVibe, she envisions building a mental health community that prioritizes emotional wellness, cognitive development, and mindfulness. Her expertise, combined with her ability to connect deeply with clients, has helped hundreds find their path to healing and self-empowerment.</p>
+                         <div class="wow fadeInUp"
+                              data-wow-delay="1.2s">
+                              <p>Shaeza is not just a
+                                   psychologist but also a
+                                   mental health advocate
+                                   inspired by her own
+                                   personal experiences and
+                                   challenges. Shaeza has
+                                   transformed her journey
+                                   into a mission to break
+                                   the stigma around mental
+                                   health and ensure
+                                   psychological support
+                                   reaches even the
+                                   underserved.</p>
+                              <p>Through MindVibe, she
+                                   envisions building a
+                                   mental health community
+                                   that prioritizes
+                                   emotional wellness,
+                                   cognitive development,
+                                   and mindfulness. Her
+                                   expertise, combined with
+                                   her ability to connect
+                                   deeply with clients, has
+                                   helped hundreds find
+                                   their path to healing and
+                                   self-empowerment.</p>
                          </div>
-                         <figure class="profile wow fadeInUp" data-wow-delay="1.4s">
-                              <img src="images/author-image.jpg" class="img-responsive" alt="">
+                         <figure
+                              class="profile wow fadeInUp"
+                              data-wow-delay="1.4s">
+                              <img src="images/author-image.jpg"
+                                   class="img-responsive"
+                                   alt="">
                               <figcaption>
-                                   <h3>Dr. Shaeza Mariyem</h3>
+                                   <h3>Dr. Shaeza Mariyem
+                                   </h3>
                                    <p>Psychologist</p>
                               </figcaption>
                          </figure>
                     </div>
-              </div>
+               </div>
           </div>
-      </section>
-      
+     </section>
+
 
      <!-- TEAM -->
      <section id="team" data-stellar-background-ratio="1">
@@ -370,8 +513,12 @@ http://www.tooplate.com/view/2098-health
                                    alt="">
 
                               <div class="team-info">
-                                   <h3>Individual Counseling</h3>
-                                   <p>Personalized support to help you navigate anxiety, depression, stress, and more</p>
+                                   <h3>Individual Counseling
+                                   </h3>
+                                   <p>Personalized support
+                                        to help you navigate
+                                        anxiety, depression,
+                                        stress, and more</p>
                                    <!-- <div
                                         class="team-contact-info">
                                         <p><i class="fa fa-phone"></i>
@@ -403,8 +550,12 @@ http://www.tooplate.com/view/2098-health
 
                               <div class="team-info">
                                    <h3>Group Support</h3>
-                                   <p>A sense of community and collective healing through workshops and support groups.</p>
-                                   
+                                   <p>A sense of community
+                                        and collective
+                                        healing through
+                                        workshops and
+                                        support groups.</p>
+
                               </div>
 
                          </div>
@@ -417,9 +568,13 @@ http://www.tooplate.com/view/2098-health
                                    alt="">
 
                               <div class="team-info">
-                                   <h3>Mindfulness Programs</h3>
-                                   <p>Tools to help you stay present, manage stress, and improve focus.</p>
-                                   
+                                   <h3>Mindfulness Programs
+                                   </h3>
+                                   <p>Tools to help you stay
+                                        present, manage
+                                        stress, and improve
+                                        focus.</p>
+
                               </div>
 
                          </div>
@@ -433,15 +588,21 @@ http://www.tooplate.com/view/2098-health
                                    alt="">
 
                               <div class="team-info">
-                                   <h3>Specialized Interventions</h3>
-                                   <p>Tailored approaches for trauma recovery, emotional regulation, and mental resilience.</p>
-                                   
+                                   <h3>Specialized
+                                        Interventions</h3>
+                                   <p>Tailored approaches
+                                        for trauma recovery,
+                                        emotional
+                                        regulation, and
+                                        mental resilience.
+                                   </p>
+
                               </div>
 
                          </div>
                     </div>
 
-                    
+
 
                </div>
           </div>
@@ -453,17 +614,17 @@ http://www.tooplate.com/view/2098-health
           <div class="container">
                <div class="row"> -->
 
-                    <!-- <div class="col-md-12 col-sm-12"> -->
-                         <!-- SECTION TITLE -->
-                         <!-- <div class="section-title wow fadeInUp"
+     <!-- <div class="col-md-12 col-sm-12"> -->
+     <!-- SECTION TITLE -->
+     <!-- <div class="section-title wow fadeInUp"
                               data-wow-delay="0.1s">
                               <h2>Latest News</h2>
                          </div>
                     </div>
 
                     <div class="col-md-4 col-sm-6"> -->
-                         <!-- NEWS THUMB -->
-                         <!-- <div class="news-thumb wow fadeInUp"
+     <!-- NEWS THUMB -->
+     <!-- <div class="news-thumb wow fadeInUp"
                               data-wow-delay="0.4s">
                               <a href="/news-detail">
                                    <img src="images/news-image1.jpg"
@@ -501,8 +662,8 @@ http://www.tooplate.com/view/2098-health
                     </div>
 
                     <div class="col-md-4 col-sm-6"> -->
-                         <!-- NEWS THUMB -->
-                         <!-- <div class="news-thumb wow fadeInUp"
+     <!-- NEWS THUMB -->
+     <!-- <div class="news-thumb wow fadeInUp"
                               data-wow-delay="0.6s">
                               <a href="/news-detail">
                                    <img src="images/news-image2.jpg"
@@ -540,8 +701,8 @@ http://www.tooplate.com/view/2098-health
                     </div>
 
                     <div class="col-md-4 col-sm-6"> -->
-                         <!-- NEWS THUMB -->
-                         <!-- <div class="news-thumb wow fadeInUp"
+     <!-- NEWS THUMB -->
+     <!-- <div class="news-thumb wow fadeInUp"
                               data-wow-delay="0.8s">
                               <a href="views//news-detail">
                                    <img src="images/news-image3.jpg"
@@ -608,55 +769,136 @@ http://www.tooplate.com/view/2098-health
 
 
                          <!-- Appointment Form -->
-                         <form id="appointment-form" role="form">
-                              <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                                  <h2>Make an appointment</h2>
+                         <form id="appointment-form"
+                              role="form">
+                              <div class="section-title wow fadeInUp"
+                                   data-wow-delay="0.4s">
+                                   <h2>Make an appointment
+                                   </h2>
                               </div>
-                              <div class="wow fadeInUp" data-wow-delay="0.8s">
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="name">Name</label>
-                                      <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
-                                  </div>
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="email">Email</label>
-                                      <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
-                                  </div>
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="date">Select Date</label>
-                                      <input type="date" name="date" class="form-control" id="date">
-                                  </div>
-                                  <div class="col-md-6 col-sm-6">
-                                      <label for="time">Decide on Time</label>
-                                      <input type="time" name="time" class="form-control" id="time">
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="department">Select A Program</label>
-                                      <select class="form-control" id="department" name="department">
-                                          <option value="">-- Select Department --</option>
-                                          <option value="Individual Counseling">Individual Counseling</option>
-                                          <option value="Group Support">Group Support</option>
-                                          <option value="Mindfulness Programs">Mindfulness Programs</option>
-                                          <option value="Specialized Interventions">Specialized Interventions</option>
-                                      </select>
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="telephone">Phone Number</label>
-                                      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" onchange="toggleSubmitButton()">
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                      <label for="message">Additional Message</label>
-                                      <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message" onchange="toggleSubmitButton()"></textarea>
-                                  </div>
-                          
-                                  <div class="col-md-12 col-sm-12">
-                                      <button type="submit" class="form-control" id="cf-submit" disabled>Submit</button>
-                                  </div>
-                                  <div class="col-md-12 col-sm-12">
-                                      <p id="errorMessage" class="text-danger"></p>
-                                  </div>
+                              <div class="wow fadeInUp"
+                                   data-wow-delay="0.8s">
+                                   <div
+                                        class="col-md-6 col-sm-6">
+                                        <label
+                                             for="name">Name</label>
+                                        <input type="text"
+                                             class="form-control"
+                                             id="name"
+                                             name="name"
+                                             placeholder="Full Name">
+                                   </div>
+                                   <div
+                                        class="col-md-6 col-sm-6">
+                                        <label
+                                             for="email">Email</label>
+                                        <input type="email"
+                                             class="form-control"
+                                             id="email"
+                                             name="email"
+                                             placeholder="Your Email">
+                                   </div>
+                                   <div
+                                        class="col-md-6 col-sm-6">
+                                        <label
+                                             for="date">Select
+                                             Date</label>
+                                        <input type="date"
+                                             name="date"
+                                             class="form-control"
+                                             id="date">
+                                   </div>
+                                   <div
+                                        class="col-md-6 col-sm-6">
+                                        <label
+                                             for="time">Decide
+                                             on Time</label>
+                                        <input type="time"
+                                             name="time"
+                                             class="form-control"
+                                             id="time">
+                                   </div>
+                                   <div
+                                        class="col-md-12 col-sm-12">
+                                        <label
+                                             for="department">Select
+                                             A
+                                             Program</label>
+                                        <select
+                                             class="form-control"
+                                             id="department"
+                                             name="department">
+                                             <option
+                                                  value="">
+                                                  -- Select
+                                                  Department
+                                                  --
+                                             </option>
+                                             <option
+                                                  value="Individual Counseling">
+                                                  Individual
+                                                  Counseling
+                                             </option>
+                                             <option
+                                                  value="Group Support">
+                                                  Group
+                                                  Support
+                                             </option>
+                                             <option
+                                                  value="Mindfulness Programs">
+                                                  Mindfulness
+                                                  Programs
+                                             </option>
+                                             <option
+                                                  value="Specialized Interventions">
+                                                  Specialized
+                                                  Interventions
+                                             </option>
+                                        </select>
+                                   </div>
+                                   <div
+                                        class="col-md-12 col-sm-12">
+                                        <label
+                                             for="telephone">Phone
+                                             Number</label>
+                                        <input type="tel"
+                                             class="form-control"
+                                             id="phone"
+                                             name="phone"
+                                             placeholder="Phone"
+                                             onchange="toggleSubmitButton()">
+                                   </div>
+                                   <div
+                                        class="col-md-12 col-sm-12">
+                                        <label
+                                             for="message">Additional
+                                             Message</label>
+                                        <textarea
+                                             class="form-control"
+                                             rows="5"
+                                             id="message"
+                                             name="message"
+                                             placeholder="Message"
+                                             onchange="toggleSubmitButton()"></textarea>
+                                   </div>
+
+                                   <div
+                                        class="col-md-12 col-sm-12">
+                                        <button
+                                             type="submit"
+                                             class="form-control"
+                                             id="cf-submit"
+                                             disabled>Submit</button>
+                                   </div>
+                                   <div
+                                        class="col-md-12 col-sm-12">
+                                        <p id="errorMessage"
+                                             class="text-danger">
+                                        </p>
+                                   </div>
                               </div>
-                          </form>
-                          
+                         </form>
+
 
                          <script>
                               // Handle form submission
