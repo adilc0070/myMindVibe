@@ -3,11 +3,13 @@ const clientRoute=express()
 const bodyParser=require('body-parser')
 const path=require('path')
 const bookingRoute=require('./booking')
+const authRoute = require('./auth')
 
 clientRoute.use(bodyParser.json())
 clientRoute.use(bodyParser.urlencoded({extended:true}))
 clientRoute.use(express.static(path.join(__dirname,'public')))
 clientRoute.use('/booking',bookingRoute)
+clientRoute.use('/auth', authRoute);
 
 clientRoute.set('view engine','ejs')
 clientRoute.set('views','./views')
@@ -22,16 +24,6 @@ clientRoute.get('/',(req,res)=>{
     })
 })
 
-clientRoute.post('/login',(req,res)=>{
-    let name=req.body.username
-    console.log(name);
-    
-    res.render('index',{
-        user:{
-            name:req.body.username
-        }
-    })
-})
 
 clientRoute.get('/news-detail',(req,res)=>{
     res.render('news-detail')
