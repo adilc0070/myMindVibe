@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     isBlocked: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
     lastBookingDate: { type: Date, default: Date.now },
-    otp: { type: String, default: null },
 })
 
 module.exports = mongoose.model('user', userSchema); 

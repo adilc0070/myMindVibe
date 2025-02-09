@@ -2,7 +2,7 @@ const express=require('express')
 const authRoute=express()
 const bodyParser=require('body-parser')
 const path=require('path')
-
+const user=require('../model/user')
 
 authRoute.use(bodyParser.json())
 authRoute.use(bodyParser.urlencoded({extended:true}))
