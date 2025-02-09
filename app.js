@@ -1,10 +1,16 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const path = require('path');
 const app = express();
+
+dotenv.config();
+
+
 const clientRoute = require('./routes/client');
 const adminRoute = require('./routes/admin');
 const connectDB = require('./middlewares/mongoDb');
-connectDB('mymindvibe');
+connectDB();
+
 
 
 app.use(express.static(path.join(__dirname,'public')))
@@ -18,8 +24,7 @@ app.use('/admin',adminRoute)
 
 
 // Start the server
-const PORT = process.env.PORT || 3002; // Dynamically select an available port
-console.log(`Attempting to start server on port ${PORT}`);
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

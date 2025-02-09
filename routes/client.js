@@ -22,6 +22,17 @@ clientRoute.get('/',(req,res)=>{
     })
 })
 
+clientRoute.post('/login',(req,res)=>{
+    let name=req.body.username
+    console.log(name);
+    
+    res.render('index',{
+        user:{
+            name:req.body.username
+        }
+    })
+})
+
 clientRoute.get('/news-detail',(req,res)=>{
     res.render('news-detail')
 })
