@@ -5,6 +5,8 @@ const path=require('path')
 const bookingRoute=require('./booking')
 const authRoute = require('./auth')
 
+
+
 clientRoute.use(bodyParser.json())
 clientRoute.use(bodyParser.urlencoded({extended:true}))
 clientRoute.use(express.static(path.join(__dirname,'public')))
@@ -19,7 +21,6 @@ clientRoute.get('/',(req,res)=>{
     res.render('index',{
         user:{
             name:'Guest'
-            
         }
     })
 })
