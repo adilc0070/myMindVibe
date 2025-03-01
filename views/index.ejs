@@ -211,29 +211,34 @@ http://www.tooplate.com/view/2098-health
                                     <label for="registerEmail">Email</label>
                                     <div class="d-flex align-items-center">
                                         <input type="email" name="registerEmail" class="form-control" id="registerEmail" placeholder="Enter your email" required>
-                                        <button type="button" class="btn btn-primary ms-2" id="verifyButton" onclick="showVerificationCode()">Verify</button>
-                                    </div>
-                
-                                    <!-- Initially hidden verification section -->
-                                    <div class="form-group" id="verifySection" style="display: none;">
-                                        <label for="registerCode">Verification Code</label>
-                                        <input type="text" name="registerCode" class="form-control" id="registerCode" placeholder="Enter your verification code" maxlength="6" required>
+                                        <button type="button" class="btn btn-primary ms-2" id="verifyButton" onclick="sendVerificationCode()">Verify</button>
                                     </div>
                                 </div>
+
+                                <!-- Verification code section -->
+                                <div class="form-group mt-3" id="verifySection" style="display: none;">
+                                    <label for="registerCode">Verification Code</label>
+                                    <div class="d-flex align-items-center">
+                                        <input type="text" name="registerCode" class="form-control" id="registerCode" placeholder="Enter 6-digit code" maxlength="6" required>
+                                        <button type="button" class="btn btn-secondary ms-2" id="resendButton" onclick="resendVerificationCode()">Resend</button>
+                                        <span id="timer" class="ms-2" style="display: none;">30s</span>
+                                    </div>
+                                    <small class="text-muted">Enter the verification code sent to your email</small>
+                                </div>
                 
-                                <div class="form-group">
+                                <div class="form-group password-section" style="display: none;">
                                     <label for="registerPassword">Password</label>
                                     <input type="password" name="registerPassword" class="form-control" id="registerPassword" placeholder="Enter your password" required>
                                 </div>
                 
-                                <div class="form-group">
+                                <div class="form-group password-section" style="display: none;">
                                     <label for="confirmPassword">Confirm Password</label>
                                     <input type="password" name="confirm-password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
                                 </div>
                 
                                 <div class="form-group">
-                                    <p class="text-center text-danger d-none" id="registerError">Some error occurred. Please check the form.</p>
-                                    <button type="submit" class="form-control btn btn-primary" id="cf-submit">Register</button>
+                                    <!-- <p class="text-center text-danger d-none" id="registerError">Some error occurred. Please check the form.</p> -->
+                                    <button type="submit" class="form-control btn btn-primary password-section" id="cf-submit" style="display: none;">Register</button>
                                 </div>
                             </form>
                 
@@ -246,26 +251,114 @@ http://www.tooplate.com/view/2098-health
           </div>
      </div>
                     <script>
-                         // Toggle between Login and Register forms
-                         document.getElementById('showRegister').addEventListener('click', function () {
-                             document.getElementById('loginForm').style.display = 'none';
-                             document.getElementById('registerForm').style.display = 'block';
-                         });
-                     
-                         document.getElementById('showLogin').addEventListener('click', function () {
-                             document.getElementById('registerForm').style.display = 'none';
-                             document.getElementById('loginForm').style.display = 'block';
-                         });
-                     
-                         // Function to show the verification code input and change button text
-                         function showVerificationCode() {
-                             var verifySection = document.getElementById('verifySection');
-                             var verifyButton = document.getElementById('verifyButton');
-                             verifySection.style.display = 'block';
-                             verifyButton.textContent = 'Resend OTP';
-                             document.getElementById('registerEmail').disabled = true;
-                         }
-                     </script>
+                        // Toggle between Login and Register forms
+                        document.getElementById('showRegister').addEventListener('click', function () {
+                            document.getElementById('loginForm').style.display = 'none';
+                            document.getElementById('registerForm').style.display = 'block';
+                        });
+                    
+                        document.getElementById('showLogin').addEventListener('click', function () {
+                            document.getElementById('registerForm').style.display = 'none';
+                            document.getElementById('loginForm').style.display = 'block';
+                        });
+
+                        let timeLeft = 30;
+                        let timerId = null;
+
+                        function startTimer() {
+                            const timerDisplay = document.getElementById('timer');
+                            const resendButton = document.getElementById('resendButton');
+                            
+                            timerDisplay.style.display = 'inline';
+                            resendButton.disabled = true;
+                            
+                            timeLeft = 30;
+                            if(timerId) clearInterval(timerId);
+                            
+                            timerId = setInterval(() => {
+                                timeLeft--;
+                                timerDisplay.textContent = timeLeft + 's';
+                                
+                                if(timeLeft <= 0) {
+                                    clearInterval(timerId);
+                                    resendButton.disabled = false;
+                                    timerDisplay.style.display = 'none';
+                                }
+                            }, 1000);
+                        }
+                    
+                        // Function to handle sending verification code
+                        async function sendVerificationCode() {
+                            const email = document.getElementById('registerEmail').value;
+                            const verifyButton = document.getElementById('verifyButton');
+
+                            if (!email) {
+                                toastr.error('Please enter your email first');
+                                return;
+                            }
+
+                            // Disable verify button
+                            verifyButton.disabled = true;
+                            
+                            try {
+                                const response = await fetch('/auth/send-verification', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ email: email })
+                                });
+                                
+                                const data = await response.json();
+                                
+                                if (data.message) {
+                                    document.getElementById('verifySection').style.display = 'block';
+                                    document.getElementById('registerEmail').readOnly = true;
+                                    verifyButton.style.display = 'none'; // Hide verify button after successful verification
+                                    
+                                    const passwordFields = document.querySelectorAll('.password-section');
+                                    passwordFields.forEach(field => {
+                                        field.style.display = 'block';
+                                    });
+                                    
+                                    toastr.success(data.message);
+                                    startTimer();
+                                    
+                                } else {
+                                    toastr.error('Failed to send verification code');
+                                    verifyButton.disabled = false;
+                                }
+                            } catch (error) {
+                                toastr.error('Error sending verification code');
+                                verifyButton.disabled = false;
+                            }
+                        }
+
+                        async function resendVerificationCode() {
+                            const email = document.getElementById('registerEmail').value;
+                            
+                            try {
+                                const response = await fetch('/auth/send-verification', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ email: email })
+                                });
+                                
+                                const data = await response.json();
+                                
+                                if (data.message) {
+                                    toastr.success('Verification code resent to your email');
+                                    startTimer();
+                                } else {
+                                    toastr.error('Failed to resend verification code');
+                                }
+                            } catch (error) {
+                                toastr.error('Error resending verification code');
+                            }
+                        }
+                    </script>
 
 
      <!-- HOME -->

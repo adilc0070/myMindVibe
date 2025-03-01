@@ -2,6 +2,7 @@ const express=require('express')
 const authRoute=express()
 const bodyParser=require('body-parser')
 const path=require('path')
+const { sendVerificationEmail } = require('../middlewares/nodeMailer')
 // const user=require('../model/user')
 
 authRoute.use(bodyParser.json())
@@ -25,4 +26,11 @@ authRoute.post('/register', (req, res) => {
     console.log("code", registerCode, 'req.body.registerCode', req.body.registerCode);
     res.redirect('/');
 })
+
+authRoute.post('/send-verification', async (req, res) => {
+    const { email } = req.body;
+    await sendVerificationEmail(email);
+    res.status(200).json({ message: 'Verification email sent' });
+})
+
 module.exports = authRoute;
