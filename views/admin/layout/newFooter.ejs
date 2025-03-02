@@ -209,31 +209,16 @@
 
 <!-- Page Navigation Script -->
 <script>
-    function showPage(pageId) {
-        // Hide all content divs
-        document.querySelectorAll('[id^="content-"]').forEach(div => {
-            div.style.display = 'none';
-        });
-
-        // Show selected content div
-        const selectedPage = document.getElementById(`content-${pageId}`);
-        if (selectedPage) {
-            selectedPage.style.display = 'block';
+    // Function to show the selected page content
+    document.addEventListener('DOMContentLoaded', function() {
+        const pageId = window.location.pathname.split('/').pop();
+        const contentDiv = document.getElementById(`content-${pageId}`);
+        if (contentDiv) {
+            contentDiv.style.display = 'block';
         }
-
-        // Update active state in navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        event.target.classList.add('active');
-    }
-
-    // Show dashboard by default
-    document.addEventListener('DOMContentLoaded', function () {
-        showPage('dashboard');
     });
-    
 </script>
+
 </body>
 
 </html>

@@ -12,6 +12,12 @@
             min-height: 100vh;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            padding: 0;
+            transition: all 0.3s;
         }
         .nav-link { color: #495057; }
         .nav-link:hover { background-color: #f8f9fa; }
@@ -22,13 +28,40 @@
         #content-users, #content-bookings, #content-departments {
             display: none;
         }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            main {
+                margin-left: 0 !important;
+            }
+        }
+        .toggle-sidebar {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 101;
+        }
+        @media (max-width: 768px) {
+            .toggle-sidebar {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="btn btn-primary toggle-sidebar" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar (Same across all pages) -->
-            <div class="col-md-3 col-lg-2 sidebar p-0">
+            <div class="col-md-3 col-lg-2 sidebar p-0" id="sidebar">
                 <div class="p-3 border-bottom">
                     <h2 class="h4 mb-0">Admin Panel</h2>
                 </div>
@@ -44,22 +77,35 @@
                 </div>
                 
                 <nav class="nav flex-column p-2">
-                    <a href="#" onclick="showPage('dashboard')" class="nav-link d-flex align-items-center py-2 active">
+                    <a href="/admin/" class="nav-link d-flex align-items-center py-2" id="nav-link-dashboard">
                         <i class="bi bi-speedometer2 me-2"></i> Dashboard
                     </a>
-                    <a href="#" onclick="showPage('users')" class="nav-link d-flex align-items-center py-2">
+                    <a href="/admin/users" class="nav-link d-flex align-items-center py-2" id="nav-link-users">
                         <i class="bi bi-people me-2"></i> Users
                     </a>
-                    <a href="#" onclick="showPage('bookings')" class="nav-link d-flex align-items-center py-2">
+                    <a href="/admin/bookings" class="nav-link d-flex align-items-center py-2" id="nav-link-bookings">
                         <i class="bi bi-calendar-check me-2"></i> Bookings
                     </a>
-                    <a href="#" onclick="showPage('departments')" class="nav-link d-flex align-items-center py-2">
-                        <i class="bi bi-building me-2"></i> Departments
+                    <a href="/admin/programs" class="nav-link d-flex align-items-center py-2" id="nav-link-programs">
+                        <i class="bi bi-building me-2"></i> Programs
                     </a>
-                    <a href="#" class="nav-link d-flex align-items-center py-2">
+                    <a href="/admin/settings" class="nav-link d-flex align-items-center py-2" id="nav-link-settings">
                         <i class="bi bi-gear me-2"></i> Settings
                     </a>
                 </nav>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const pageId = window.location.pathname.split('/').pop();
+                        const contentDiv = document.getElementById(`nav-link-${pageId}`);
+                        if (contentDiv) {
+                            contentDiv.classList.add('active');
+                        }
+                    });
+
+                    function toggleSidebar() {
+                        document.getElementById('sidebar').classList.toggle('show');
+                    }
+                </script>
             </div>
 
-            <main class="col-md-9 col-lg-10 p-4">      
+            <main class="col-md-9 col-lg-10 ms-auto p-4">

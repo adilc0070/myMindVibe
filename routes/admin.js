@@ -19,8 +19,22 @@ adminRoute.set('view engine', 'ejs');
 adminRoute.set('views', './views/admin');
 
 // Admin Dashboard
+
 adminRoute.get('/', (req, res) => {
+    res.render('dashboard');
+});
+adminRoute.get('/users', (req, res) => {
     res.render('users');
+});
+
+adminRoute.get('/bookings', (req, res) => {
+    res.render('booking');
+});
+adminRoute.get('/programs', (req, res) => {
+    res.render('programs');
+});
+adminRoute.get('/settings', (req, res) => {
+    res.render('404');
 });
 
 // Admin Login

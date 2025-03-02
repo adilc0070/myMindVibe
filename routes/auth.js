@@ -3,14 +3,30 @@ const authRoute=express()
 const bodyParser=require('body-parser')
 const path=require('path')
 const { sendVerificationEmail } = require('../middlewares/nodeMailer')
-// const user=require('../model/user')
+const user=require('../models/user')
 
 authRoute.use(bodyParser.json())
 authRoute.use(bodyParser.urlencoded({extended:true}))
 authRoute.use(express.static(path.join(__dirname,'public')))
-authRoute.post('/login', (req, res) => {
-    console.log("req.body ", req.body['login-email']);
-    const email = req.body['login-email'];
+
+
+
+
+
+authRoute.post('/login', async (req, res) => {
+    console.log("req.body ", req.body);
+    const email = req.body.email;
+    const password = req.body.password;
+    if (!email || !password) {
+        return res.status(400).json({ success: false, message: 'Email and password are required' });
+    }
+    const user = await user.findOne({ email });
+    if (!user) {
+        return res.status(400).json({ success: false, message: 'User not found' });
+    }
+    if (user.password !== password) {
+        return res.status(400).json({ success: false, message: 'Invalid password' });
+    }
     res.redirect('/')
 });
 authRoute.get('/logout', (req, res) => {
@@ -19,11 +35,8 @@ authRoute.get('/logout', (req, res) => {
 });
 authRoute.post('/register', (req, res) => {
     let {registerName, registerPhone, registerEmail, registerPassword,registerCode}=req.body
-    console.log("name", registerName);
-    console.log("phone", registerPhone);
-    console.log("email", registerEmail);
-    console.log("password", registerPassword);
-    console.log("code", registerCode, 'req.body.registerCode', req.body.registerCode);
+    
+   
     res.redirect('/');
 })
 
