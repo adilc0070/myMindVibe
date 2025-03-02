@@ -1,7 +1,6 @@
 // utils/emailHelper.js
 
 const nodemailer = require('nodemailer');
-const user=require('../models/user')
 const otp=require('../models/Otp')
 
 // Create a transporter object using the default SMTP transport
@@ -52,7 +51,7 @@ const sendPasswordResetEmail = async (to) => {
     const otp_to_send = await new otp({
         email: to,
         otp: otpToSend
-    })
+    },{upsert:true})
     await otp_to_send.save();
     const opt = otpToSend
     const htmlContent = `<h1>Please Use the following OTP to reset your password: ${opt}</h1>`;

@@ -1,7 +1,6 @@
-const user=require('../models/user')
 const bcrypt=require('bcrypt')
 const admin=require('../models/Admin');
-
+const user=require('../models/User');
 
 const login = async (req, res) => {
     const { email, password } = req.body;

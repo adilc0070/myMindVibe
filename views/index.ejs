@@ -195,202 +195,251 @@ http://www.tooplate.com/view/2098-health
                 
                         <!-- Register Form (Hidden initially) -->
                         <div id="registerForm" class="auth-form" style="display:none;">
-                            <h3>Register</h3>
-                            <form action="/auth/register" method="post">
-                                <div class="form-group">
-                                    <label for="registerName">Name</label>
-                                    <input type="text" name="registerName" class="form-control" id="registerName" placeholder="Enter your name" required>
-                                </div>
-                
-                                <div class="form-group">
-                                    <label for="registerPhone">Phone</label>
-                                    <input type="tel" name="registerPhone" class="form-control" id="registerPhone" placeholder="Enter your phone" required>
-                                </div>
-                
-                                <div class="form-group">
-                                    <label for="registerEmail">Email</label>
-                                    <div class="d-flex align-items-center">
-                                        <input type="email" name="registerEmail" class="form-control" id="registerEmail" placeholder="Enter your email" required>
-                                        <button type="button" class="btn btn-primary ms-2" id="verifyButton" onclick="sendVerificationCode()">Verify</button>
-                                    </div>
-                                </div>
-
-                                <!-- Verification code section -->
-                                <div class="form-group mt-3" id="verifySection" style="display: none;">
-                                    <label for="registerCode">Verification Code</label>
-                                    <div class="d-flex align-items-center">
-                                        <input type="text" name="registerCode" class="form-control" id="registerCode" placeholder="Enter 6-digit code" maxlength="6" required>
-                                        <button type="button" class="btn btn-secondary ms-2" id="resendButton" onclick="resendVerificationCode()">Resend</button>
-                                        <span id="timer" class="ms-2" style="display: none;">30s</span>
-                                    </div>
-                                    <small class="text-muted">Enter the verification code sent to your email</small>
-                                </div>
-                
-                                <div class="form-group password-section" style="display: none;">
-                                    <label for="registerPassword">Password</label>
-                                    <input type="password" name="registerPassword" class="form-control" id="registerPassword" placeholder="Enter your password" required>
-                                </div>
-                
-                                <div class="form-group password-section" style="display: none;">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" name="confirm-password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                                </div>
-                
-                                <div class="form-group">
-                                    <!-- <p class="text-center text-danger d-none" id="registerError">Some error occurred. Please check the form.</p> -->
-                                    <button type="submit" class="form-control btn btn-primary password-section" id="cf-submit" style="display: none;">Register</button>
-                                </div>
-                            </form>
-                
-                            <p class="text-center mt-3">
-                                Already have an account? <a href="javascript:void(0);" id="showLogin">Login here</a>
-                            </p>
-                        </div>
+                         <h3>Register</h3>
+                         <form id="registerFormElement" method="post" action="/auth/register" onsubmit="return submitRegisterForm()" oninput="validateRegisterForm()">
+                             <div class="form-group">
+                                 <label for="registerName">Name</label>
+                                 <input type="text" name="registerName" class="form-control" id="registerName" placeholder="Enter your name" required>
+                             </div>
+                     
+                             <div class="form-group">
+                                 <label for="registerPhone">Phone</label>
+                                 <input type="tel" name="registerPhone" class="form-control" id="registerPhone" placeholder="Enter your phone" required>
+                             </div>
+                     
+                             <div class="form-group">
+                                 <label for="registerEmail">Email</label>
+                                 <div class="d-flex align-items-center">
+                                     <input type="email" name="registerEmail" class="form-control" id="registerEmail" placeholder="Enter your email" required>
+                                     <button type="button" class="btn btn-primary ms-2" id="verifyButton" onclick="sendVerificationCode()">Verify</button>
+                                 </div>
+                             </div>
+                     
+                             <!-- Verification code section -->
+                             <div class="form-group mt-3" id="verifySection" style="display: none;">
+                                 <label for="registerCode">Verification Code</label>
+                                 <div class="d-flex align-items-center">
+                                     <input type="text" name="registerCode" class="form-control" id="registerCode" placeholder="Enter 6-digit code" maxlength="6" required>
+                                     <button type="button" class="btn btn-secondary ms-2" id="resendButton" onclick="sendVerificationCode()">Resend</button>
+                                     <span id="timer" class="ms-2" style="display: none;">30s</span>
+                                 </div>
+                                 <small class="text-muted">Enter the verification code sent to your email</small>
+                             </div>
+                     
+                             <div class="form-group password-section" style="display: none;">
+                                 <label for="registerPassword">Password</label>
+                                 <input type="password" name="registerPassword" class="form-control" id="registerPassword" placeholder="Enter your password" required>
+                             </div>
+                     
+                             <div class="form-group password-section" style="display: none;">
+                                 <label for="confirmPassword">Confirm Password</label>
+                                 <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                             </div>
+                     
+                             <div class="form-group">
+                                 <!-- Error Message Section -->
+                                 <p id="registerError" class="text-danger" style="display:none;"></p>
+                                 <button type="submit" class="form-control btn btn-primary password-section" id="cf-submit" style="display: none;">Register</button>
+                             </div>
+                         </form>
+                         
+                         <p class="text-center mt-3">
+                             Already have an account? <a href="javascript:void(0);" id="showLogin">Login here</a>
+                         </p>
+                     </div>
+                     
                     </div>
                 </div>
           </div>
      </div>
                     <script>
-                        // Toggle between Login and Register forms
-                        document.getElementById('showRegister').addEventListener('click', function () {
-                            document.getElementById('loginForm').style.display = 'none';
-                            document.getElementById('registerForm').style.display = 'block';
-                        });
-                    
-                        document.getElementById('showLogin').addEventListener('click', function () {
-                            document.getElementById('registerForm').style.display = 'none';
-                            document.getElementById('loginForm').style.display = 'block';
-                        });
+                         
 
-                        let timeLeft = 30;
-                        let timerId = null;
+// Toggle between Login and Register forms
+document.getElementById('showRegister').addEventListener('click', function () {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'block';
+});
 
-                        function startTimer() {
-                            const timerDisplay = document.getElementById('timer');
-                            const resendButton = document.getElementById('resendButton');
-                            
-                            timerDisplay.style.display = 'inline';
-                            resendButton.disabled = true;
-                            
-                            timeLeft = 30;
-                            if(timerId) clearInterval(timerId);
-                            
-                            timerId = setInterval(() => {
-                                timeLeft--;
-                                timerDisplay.textContent = timeLeft + 's';
-                                
-                                if(timeLeft <= 0) {
-                                    clearInterval(timerId);
-                                    resendButton.disabled = false;
-                                    timerDisplay.style.display = 'none';
-                                }
-                            }, 1000);
-                        }
-                    
-                        // Function to handle sending verification code
-                        async function sendVerificationCode() {
-                            const email = document.getElementById('registerEmail').value;
-                            const verifyButton = document.getElementById('verifyButton');
+document.getElementById('showLogin').addEventListener('click', function () {
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+});
 
-                            if (!email) {
-                                toastr.error('Please enter your email first');
-                                return;
-                            }
+let timeLeft = 30;
+let timerId = null;
 
-                            // Disable verify button
-                            verifyButton.disabled = true;
-                            
-                            try {
-                                const response = await fetch('/auth/send-verification', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({ email: email })
-                                });
-                                
-                                const data = await response.json();
-                                
-                                if (data.message) {
-                                    document.getElementById('verifySection').style.display = 'block';
-                                    document.getElementById('registerEmail').readOnly = true;
-                                    verifyButton.style.display = 'none'; // Hide verify button after successful verification
-                                    
-                                    const passwordFields = document.querySelectorAll('.password-section');
-                                    passwordFields.forEach(field => {
-                                        field.style.display = 'block';
-                                    });
-                                    
-                                    toastr.success(data.message);
-                                    startTimer();
-                                    
-                                } else {
-                                    toastr.error('Failed to send verification code');
-                                    verifyButton.disabled = false;
-                                }
-                            } catch (error) {
-                                toastr.error('Error sending verification code');
-                                verifyButton.disabled = false;
-                            }
-                        }
+// Function to start the timer for verification code resend
+function startTimer() {
+    const timerDisplay = document.getElementById('timer');
+    const resendButton = document.getElementById('resendButton');
 
-                        async function resendVerificationCode() {
-                            const email = document.getElementById('registerEmail').value;
-                            
-                            try {
-                                const response = await fetch('/auth/send-verification', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({ email: email })
-                                });
-                                
-                                const data = await response.json();
-                                
-                                if (data.message) {
-                                    toastr.success('Verification code resent to your email');
-                                    startTimer();
-                                } else {
-                                    toastr.error('Failed to resend verification code');
-                                }
-                            } catch (error) {
-                                toastr.error('Error resending verification code');
-                            }
-                        }
+    timerDisplay.style.display = 'inline';
+    resendButton.disabled = true;
 
+    timeLeft = 30;
+    if (timerId) clearInterval(timerId);
 
-                        async function login() {
-                            const loginEmail = document.getElementById('loginEmail').value;
-                            const loginPassword = document.getElementById('loginPassword').value;
+    timerId = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft + 's';
 
-                            if (!loginEmail || !loginPassword) {
-                                toastr.error('Please enter your email and password');
-                                return;
-                            }
+        if (timeLeft <= 0) {
+            clearInterval(timerId);
+            resendButton.disabled = false;
+            timerDisplay.style.display = 'none';
+        }
+    }, 1000);
+}
 
-                            try {
-                                const response = await fetch('/auth/login', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({ email: loginEmail, password: loginPassword })
-                                });
+// Function to handle sending verification code
+async function sendVerificationCode() {
+    const email = document.getElementById('registerEmail').value;
+    const verifyButton = document.getElementById('verifyButton');
 
-                                const data = await response.json();
+    if (!email) {
+        toastr.error('Please enter your email first');
+        return;
+    }
 
-                                if (data.success) {
-                                    toastr.success('Login successful');
-                                    window.location.href = '/dashboard';
-                                } else {
-                                    toastr.error(data.message);
-                                }
-                            } catch (error) {
-                                toastr.error('Error logging in');
-                            }
-                        }
-                        
+    // Disable verify button
+    verifyButton.disabled = true;
+
+    try {
+        const response = await fetch('/auth/send-verification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email })
+        });
+
+        const data = await response.json();
+
+        if (data.message) {
+            // Show the verification code section
+            document.getElementById('verifySection').style.display = 'block';
+            document.getElementById('registerEmail').readOnly = true;
+            verifyButton.style.display = 'none'; // Hide verify button after successful verification
+
+            // Show password and confirm password fields
+            const passwordFields = document.querySelectorAll('.password-section');
+            passwordFields.forEach(field => {
+                field.style.display = 'block';
+            });
+
+            toastr.success(data.message);
+            startTimer();
+        } else {
+            toastr.error('Failed to send verification code');
+            verifyButton.disabled = false;
+        }
+    } catch (error) {
+        toastr.error('Error sending verification code');
+        verifyButton.disabled = false;
+    }
+}
+
+// Function to validate the register form
+function validateRegisterForm() {
+    const registerName = document.getElementById('registerName').value;
+    const registerPhone = document.getElementById('registerPhone').value;
+    const registerEmail = document.getElementById('registerEmail').value;
+    const registerPassword = document.getElementById('registerPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const registerCode = document.getElementById('registerCode').value;
+    const registerError = document.getElementById('registerError');
+    const submitButton = document.getElementById('cf-submit');
+
+    let errors = [];
+
+    // Name validation
+    if (!registerName || registerName.trim() === '') {
+        errors.push('Name cannot be empty');
+    }
+
+    // Phone validation
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(registerPhone)) {
+        errors.push('Phone number must be 10 digits');
+    }
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|org|net|gov|edu)$/;
+    const validDomains = ['gmail.com', 'yahoo.com', 'outlook.com'];
+    const emailDomain = registerEmail.split('@')[1];
+    if (!emailPattern.test(registerEmail) || !validDomains.includes(emailDomain)) {
+        errors.push('Please enter a valid email from gmail.com, yahoo.com, or outlook.com');
+    }
+
+    // Password validation (only if password section is visible)
+    if (document.querySelector('.password-section').style.display !== 'none') {
+        if (registerPassword.length < 8) {
+            errors.push('Password must be at least 8 characters long');
+        }
+        if (registerPassword !== confirmPassword) {
+            errors.push('Passwords do not match');
+        }
+
+        // Verification code validation  
+        if (!registerCode || registerCode.length !== 6 || !/^\d+$/.test(registerCode)) {
+            errors.push('Please enter a valid 6-digit code');
+        }
+    }
+
+    // Always show/hide errors
+    if (errors.length > 0) {
+        registerError.textContent = errors.join('\n');
+        registerError.style.display = 'block';
+        submitButton.disabled = true;
+        return false;
+    } else {
+        registerError.style.display = 'none';
+        if (document.querySelector('.password-section').style.display !== 'none') {
+            submitButton.disabled = false;
+        }
+        return true;
+    }
+}
+
+// Function to handle form submission
+async function submitRegisterForm() {
+    const registerForm = document.getElementById('registerFormElement');
+    const registerError = document.getElementById('registerError');
+    const submitButton = document.getElementById('cf-submit');
+
+    if (!validateRegisterForm()) {
+        return false;
+    }
+
+    submitButton.disabled = true;
+    try {
+        const formData = new FormData(registerForm);
+        const response = await fetch('/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            toastr.success(data.message);
+            window.location.href = '/';
+        } else {
+            toastr.error(data.message || 'Registration failed');
+            submitButton.disabled = false;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        toastr.error('Error submitting form');
+        submitButton.disabled = false;
+    }
+    
+    return false;
+}
                     </script>
 
 

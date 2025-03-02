@@ -3,14 +3,10 @@ const authRoute=express()
 const bodyParser=require('body-parser')
 const path=require('path')
 const { sendVerificationEmail } = require('../middlewares/nodeMailer')
-const user=require('../models/user')
-
+const { createUser } = require('../controller/users');
 authRoute.use(bodyParser.json())
 authRoute.use(bodyParser.urlencoded({extended:true}))
 authRoute.use(express.static(path.join(__dirname,'public')))
-
-
-
 
 
 authRoute.post('/login', async (req, res) => {
@@ -33,12 +29,11 @@ authRoute.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
-authRoute.post('/register', (req, res) => {
-    let {registerName, registerPhone, registerEmail, registerPassword,registerCode}=req.body
+authRoute.post('/register', async (req, res) => {
+    console.log('here');
     
-   
-    res.redirect('/');
-})
+    await createUser(req, res);
+});
 
 authRoute.post('/send-verification', async (req, res) => {
     const { email } = req.body;
