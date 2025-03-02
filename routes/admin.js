@@ -2,38 +2,39 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+
 const upload = require('../middlewares/multerConfig');
+
 const bookingRoute=require('./booking');
 const adminController = require('../controller/admin');
-
+const { authenticateAdminToken } = require('../middlewares/authenticator');
 const adminRoute = express();
 
 // Middleware
 adminRoute.use(bodyParser.json());
 adminRoute.use(bodyParser.urlencoded({ extended: true }));
 adminRoute.use(express.static(path.join(__dirname, 'public')));
-adminRoute.use('/booking',bookingRoute)
+adminRoute.use('/booking',authenticateAdminToken, bookingRoute)
 
 // Set View Engine
 adminRoute.set('view engine', 'ejs');
 adminRoute.set('views', './views/admin');
 
 // Admin Dashboard
-
-adminRoute.get('/', (req, res) => {
+adminRoute.get('/', authenticateAdminToken, (req, res) => {
     res.render('dashboard');
 });
-adminRoute.get('/users', (req, res) => {
+adminRoute.get('/users', authenticateAdminToken, (req, res) => {
     res.render('users');
 });
 
-adminRoute.get('/bookings', (req, res) => {
+adminRoute.get('/bookings', authenticateAdminToken, (req, res) => {
     res.render('booking');
 });
-adminRoute.get('/programs', (req, res) => {
+adminRoute.get('/programs', authenticateAdminToken, (req, res) => {
     res.render('programs');
 });
-adminRoute.get('/settings', (req, res) => {
+adminRoute.get('/settings', authenticateAdminToken, (req, res) => {
     res.render('404');
 });
 

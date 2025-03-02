@@ -1,6 +1,7 @@
 const Otp = require('../models/Otp');
 const User = require('../models/User');
-
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const createUser = async (req, res) => {
     try {
         const { registerName, registerEmail, registerPassword, registerPhone, registerCode } = req.body;
@@ -18,6 +19,8 @@ const createUser = async (req, res) => {
             const newUser = new User({ name:registerName, email:registerEmail, password:registerPassword, phone:registerPhone });
             await newUser.save();
             await Otp.deleteOne({email:registerEmail, otp:registerCode });
+            const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
             return res.status(200).json({ message: 'User created successfully' }); 
         }
 
