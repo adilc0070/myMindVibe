@@ -21,7 +21,10 @@ adminRoute.set('view engine', 'ejs');
 adminRoute.set('views', './views/admin');
 
 // Admin Dashboard
-adminRoute.get('/', authenticateAdminToken, (req, res) => {
+adminRoute.get('/', (req, res) => {
+    res.render('login');
+});
+adminRoute.get('/dashboard', authenticateAdminToken, (req, res) => {
     res.render('dashboard');
 });
 adminRoute.get('/users', authenticateAdminToken, (req, res) => {

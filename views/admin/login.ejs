@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindvibes Admin - Login</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        rel="stylesheet">
+    <style>
+        .bg-gradient {
+            background: linear-gradient(135deg, #8a2be2, #4b0082);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-purple-800">Mindvibes</h1>
+            <p class="text-gray-600 mt-2">Psychartist Booking Admin Portal</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="block">
+            <form id="loginFormElement">
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="admin@mindvibes.com" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="••••••••" required>
+                </div>
+
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <button type="button" id="forgotPasswordBtn" class="text-sm text-purple-600 hover:text-purple-800">Forgot password?</button>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 1: Forgot Password - Email Input -->
+        <div id="forgotStep1" class="hidden">
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Reset Password</h2>
+                <p class="text-gray-600 text-sm mb-4">Step 1: Enter your email address to receive an OTP</p>
+            </div>
+            <form id="forgotStep1Form">
+                <div class="mb-6">
+                    <label for="resetEmail" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="resetEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="admin@mindvibes.com" required>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" id="backToLoginBtn1" class="w-1/3 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 ease-in-out font-medium">
+                        Back
+                    </button>
+                    <button type="submit" class="w-2/3 bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                        Send OTP
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 2: Forgot Password - OTP Verification -->
+        <div id="forgotStep2" class="hidden">
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Verify OTP</h2>
+                <p class="text-gray-600 text-sm mb-4">Step 2: Enter the OTP sent to your email</p>
+            </div>
+            <form id="forgotStep2Form">
+                <div class="mb-6">
+                    <label for="otpCode" class="block text-gray-700 text-sm font-medium mb-2">OTP Code</label>
+                    <div class="flex justify-between">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent otp-input">
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p class="text-sm text-gray-600">Didn't receive code? <button type="button" class="text-purple-600 hover:text-purple-800">Resend OTP</button></p>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" id="backToStep1" class="w-1/3 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 ease-in-out font-medium">
+                        Back
+                    </button>
+                    <button type="submit" class="w-2/3 bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                        Verify OTP
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Forgot Password - Security Code -->
+        <div id="forgotStep3" class="hidden">
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Security Verification</h2>
+                <p class="text-gray-600 text-sm mb-4">Step 3: Enter your account security code</p>
+            </div>
+            <form id="forgotStep3Form">
+                <div class="mb-6">
+                    <label for="securityCode" class="block text-gray-700 text-sm font-medium mb-2">Security Code</label>
+                    <input type="text" id="securityCode" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Enter security code" required>
+                    <p class="text-xs text-gray-500 mt-1">This is the security code you set up during account creation</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" id="backToStep2" class="w-1/3 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 ease-in-out font-medium">
+                        Back
+                    </button>
+                    <button type="submit" class="w-2/3 bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                        Verify
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 4: Forgot Password - New Password -->
+        <div id="forgotStep4" class="hidden">
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Create New Password</h2>
+                <p class="text-gray-600 text-sm mb-4">Step 4: Set your new password</p>
+            </div>
+            <form id="forgotStep4Form">
+                <div class="mb-6">
+                    <label for="newPassword" class="block text-gray-700 text-sm font-medium mb-2">New Password</label>
+                    <input type="password" id="newPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="••••••••" required>
+                    <div class="mt-1">
+                        <div class="h-1 flex rounded-full overflow-hidden">
+                            <div class="w-1/3 bg-red-300" id="pwdStrength1"></div>
+                            <div class="w-1/3 bg-gray-200" id="pwdStrength2"></div>
+                            <div class="w-1/3 bg-gray-200" id="pwdStrength3"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Password strength: <span id="pwdStrengthText">Weak</span></p>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="confirmPassword" class="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="••••••••" required>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" id="backToStep3" class="w-1/3 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 ease-in-out font-medium">
+                        Back
+                    </button>
+                    <button type="submit" class="w-2/3 bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                        Reset Password
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Password Reset Success -->
+        <div id="resetSuccess" class="hidden">
+            <div class="text-center">
+                <div class="mx-auto bg-green-100 rounded-full p-3 w-16 h-16 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">Password Reset Successfully</h2>
+                <p class="text-gray-600 mb-6">Your password has been updated. You can now login with your new password.</p>
+                <button type="button" id="backToLoginFinal" class="w-full bg-gradient text-white py-2 px-4 rounded-md hover:opacity-90 transition duration-300 ease-in-out font-medium">
+                    Back to Login
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <p class="text-sm text-gray-600">
+                &copy; 2025 
+                <a href="https://www.nuetrinoinfosolutions.com/" class="text-purple-600 hover:text-purple-800">Nuetrino Code Studio.</a> All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide form sections
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('div[id^="login"], div[id^="forgot"], div[id="resetSuccess"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Show requested section
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Login form submission
+        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Here you would normally handle authentication
+            if (email && password) {
+                alert('Login attempt registered. In a real application, this would verify credentials and redirect to the admin dashboard.');
+                // window.location.href = 'dashboard.html';
+            }
+        });
+
+        // OTP input handler
+        document.querySelectorAll('.otp-input').forEach((input, index, inputs) => {
+            input.addEventListener('keyup', function(e) {
+                // Move to next input on keyup
+                if (e.key >= '0' && e.key <= '9') {
+                    input.value = e.key;
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                    e.preventDefault();
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                // Handle backspace
+                if (e.key === 'Backspace') {
+                    input.value = '';
+                    if (index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Password strength checker
+        document.getElementById('newPassword').addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^A-Za-z0-9]/)) strength++;
+            
+            const strengthBar1 = document.getElementById('pwdStrength1');
+            const strengthBar2 = document.getElementById('pwdStrength2');
+            const strengthBar3 = document.getElementById('pwdStrength3');
+            const strengthText = document.getElementById('pwdStrengthText');
+            
+            if (strength === 0) {
+                strengthBar1.className = 'w-1/3 bg-gray-200';
+                strengthBar2.className = 'w-1/3 bg-gray-200';
+                strengthBar3.className = 'w-1/3 bg-gray-200';
+                strengthText.textContent = 'None';
+            } else if (strength === 1) {
+                strengthBar1.className = 'w-1/3 bg-red-400';
+                strengthBar2.className = 'w-1/3 bg-gray-200';
+                strengthBar3.className = 'w-1/3 bg-gray-200';
+                strengthText.textContent = 'Weak';
+            } else if (strength === 2) {
+                strengthBar1.className = 'w-1/3 bg-yellow-400';
+                strengthBar2.className = 'w-1/3 bg-yellow-400';
+                strengthBar3.className = 'w-1/3 bg-gray-200';
+                strengthText.textContent = 'Medium';
+            } else {
+                strengthBar1.className = 'w-1/3 bg-green-400';
+                strengthBar2.className = 'w-1/3 bg-green-400';
+                strengthBar3.className = 'w-1/3 bg-green-400';
+                strengthText.textContent = 'Strong';
+            }
+        });
+
+        // Form navigation event listeners
+        document.getElementById('forgotPasswordBtn').addEventListener('click', () => showSection('forgotStep1'));
+        document.getElementById('backToLoginBtn1').addEventListener('click', () => showSection('loginForm'));
+        document.getElementById('backToLoginFinal').addEventListener('click', () => showSection('loginForm'));
+        document.getElementById('backToStep1').addEventListener('click', () => showSection('forgotStep1'));
+        document.getElementById('backToStep2').addEventListener('click', () => showSection('forgotStep2'));
+        document.getElementById('backToStep3').addEventListener('click', () => showSection('forgotStep3'));
+
+        // Form submissions with mock data for demo
+        document.getElementById('forgotStep1Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (document.getElementById('resetEmail').value) {
+                showSection('forgotStep2');
+            }
+        });
+
+        document.getElementById('forgotStep2Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let otpComplete = true;
+            document.querySelectorAll('.otp-input').forEach(input => {
+                if (!input.value) otpComplete = false;
+            });
+            
+            if (otpComplete) {
+                showSection('forgotStep3');
+            }
+        });
+
+        document.getElementById('forgotStep3Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (document.getElementById('securityCode').value) {
+                showSection('forgotStep4');
+            }
+        });
+
+        document.getElementById('forgotStep4Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword && confirmPassword && newPassword === confirmPassword) {
+                showSection('resetSuccess');
+            } else {
+                alert('Passwords do not match or are empty!');
+            }
+        });
+    </script>
+</body>
+</html>
