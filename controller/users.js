@@ -48,8 +48,17 @@ const loginUser = async (req, res) => {
 
 };
 
+const listUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).render('users', { users });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
-module.exports = { createUser, loginUser };
+
+module.exports = { createUser, loginUser, listUsers };
 
         
         

@@ -8,6 +8,7 @@ const upload = require('../middlewares/multerConfig');
 const bookingRoute = require('./booking');
 const adminController = require('../controller/admin');
 const { authenticateAdminToken, protectorAdmin } = require('../middlewares/authenticator');
+const { listUsers } = require('../controller/users');
 const adminRoute = express();
 
 // Middleware
@@ -30,9 +31,7 @@ adminRoute.post('/register', adminController.adminRegister);
 adminRoute.get('/dashboard', authenticateAdminToken, (req, res) => {
     res.render('dashboard');
 });
-adminRoute.get('/users', authenticateAdminToken, (req, res) => {
-    res.render('users');
-});
+adminRoute.get('/users', authenticateAdminToken, listUsers);
 
 adminRoute.get('/bookings', authenticateAdminToken, (req, res) => {
     res.render('booking');

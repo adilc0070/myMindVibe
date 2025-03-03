@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Booking = require("../models/Booking");
 const user = require("../models/user");
+const { listUsers } = require("./users");
 
 const emailValidation = (email) => {
     const emailRegex =/^[^\s@]+@(gmail\.com|icloud\.com|mindvibes\.com)$/
@@ -86,6 +87,7 @@ const dashboard = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 module.exports = {
     adminLogin,

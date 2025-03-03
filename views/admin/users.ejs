@@ -1,5 +1,6 @@
 <%- include('../admin/layout/newHeader.ejs') -%>
 
+
 <!-- Users Content -->
 <div id="content-users">
     <div
@@ -29,19 +30,33 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Status</th>
+                        <th>Last Booking</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% users.forEach(user => { %>
                     <tr>
-                        <td>Dr. John Smith</td>
-                        <td>Psychiatrist</td>
-                        <td>Adult Psychiatry</td>
-                        <td><span
-                                class="badge bg-success">Active</span>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.phone %></td>
+                        <td><%if(user.isBlocked){ %>
+                            <span
+                                class="badge bg-danger">Blocked</span>
+                            <%}else{ %>
+                                <span
+                                    class="badge bg-success">Active</span>
+                            <% } %>
+                        </td>
+                        <td><% if(user.lastBookingDate){ %>
+                            <%= new Date(user.lastBookingDate).toLocaleDateString() %>
+                            <%}else{ %>
+                                <span
+                                    class="badge bg-danger">No Booking</span>
+                            <% } %>
                         </td>
                         <td>
                             <button
@@ -50,25 +65,19 @@
                                 class="btn btn-sm btn-outline-danger">Delete</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Dr. Sarah Johnson</td>
-                        <td>Therapist</td>
-                        <td>Child Psychology</td>
-                        <td><span
-                                class="badge bg-success">Active</span>
-                        </td>
-                        <td>
-                            <button
-                                class="btn btn-sm btn-outline-primary me-1">Edit</button>
-                            <button
-                                class="btn btn-sm btn-outline-danger">Delete</button>
-                        </td>
-                    </tr>
+                    <% }) %>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-primary">Previous</button>
+        <button class="btn btn-primary">Next</button>
+        <span>Page of </span>
+    </div>
 </div>
+
+
 
 
 <%- include('../admin/layout/newFooter.ejs') -%>
