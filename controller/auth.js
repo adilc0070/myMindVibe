@@ -1,10 +1,10 @@
 const bcrypt=require('bcrypt')
-const admin=require('../models/Admin');
-const user=require('../models/User');
+const userSchema=require('../models/user');
+const adminSchema=require('../models/Admin');
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    const user = await user.findOne({ email });
+    const user = await userSchema.findOne({ email });
     if (!user) {
         return res.status(400).json({ success: false, message: 'User not found' });
     }
@@ -19,7 +19,7 @@ const login = async (req, res) => {
 
 const adminLogin = async (req, res) => {
     const { email, password } = req.body;
-    const admin = await admin.findOne({ email });
+    const admin = await adminSchema.findOne({ email });
     if (!admin) {
         return res.status(400).json({ success: false, message: 'Admin not found' });
     }

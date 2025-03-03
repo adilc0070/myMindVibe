@@ -1,7 +1,7 @@
 const Otp = require('../models/Otp');
-const User = require('../models/User');
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const createUser = async (req, res) => {
     try {
         const { registerName, registerEmail, registerPassword, registerPhone, registerCode } = req.body;
@@ -29,7 +29,27 @@ const createUser = async (req, res) => {
     }
 };
 
-module.exports = { createUser };
+const loginUser = async (req, res) => {
+        const { loginEmail, loginPassword } = req.body;
+        if (!loginEmail || !loginPassword) {
+            return res.status(400).json({ success: false, message: 'Email and password are required' });
+        }
+        const user = await User.findOne({ email:loginEmail });
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'User not found' });
+        }
+        const isMatch = await bcrypt.compare(loginPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ success: false, message: 'Invalid password' });
+        }
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+        res.redirect('/')
+
+};
+
+
+module.exports = { createUser, loginUser };
 
         
         

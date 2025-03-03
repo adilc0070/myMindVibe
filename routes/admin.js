@@ -5,25 +5,28 @@ const path = require('path');
 
 const upload = require('../middlewares/multerConfig');
 
-const bookingRoute=require('./booking');
+const bookingRoute = require('./booking');
 const adminController = require('../controller/admin');
-const { authenticateAdminToken } = require('../middlewares/authenticator');
+const { authenticateAdminToken, protectorAdmin } = require('../middlewares/authenticator');
 const adminRoute = express();
 
 // Middleware
 adminRoute.use(bodyParser.json());
 adminRoute.use(bodyParser.urlencoded({ extended: true }));
 adminRoute.use(express.static(path.join(__dirname, 'public')));
-adminRoute.use('/booking',authenticateAdminToken, bookingRoute)
+adminRoute.use('/booking', authenticateAdminToken, bookingRoute)
 
 // Set View Engine
 adminRoute.set('view engine', 'ejs');
 adminRoute.set('views', './views/admin');
 
-// Admin Dashboard
-adminRoute.get('/', (req, res) => {
-    res.render('login');
-});
+
+
+// Admin Login
+adminRoute.get('/', protectorAdmin,adminController.getLogin);
+adminRoute.post('/login', adminController.adminLogin);
+adminRoute.post('/register', adminController.adminRegister);
+
 adminRoute.get('/dashboard', authenticateAdminToken, (req, res) => {
     res.render('dashboard');
 });
@@ -40,14 +43,10 @@ adminRoute.get('/programs', authenticateAdminToken, (req, res) => {
 adminRoute.get('/settings', authenticateAdminToken, (req, res) => {
     res.render('404');
 });
-
-// Admin Login
-adminRoute.get('/getLogin', adminController.getLogin);
-adminRoute.post('/login', adminController.adminLogin);
-
-// Admin Register
-adminRoute.get('/getRegister', adminController.getRegister);
-adminRoute.post('/register', adminController.newAdmin);
+adminRoute.get('/logout', (req, res) => {
+    res.clearCookie('adminToken');
+    res.redirect('/admin/');
+});
 
 
 // Multiple File Upload

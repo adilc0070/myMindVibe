@@ -7,7 +7,7 @@ const bookingRoute=require('./booking')
 const authRoute = require('./auth')
 const { authenticateUserToken } = require('../middlewares/authenticator');
 const jwt = require('jsonwebtoken');
-const user = require('../models/User')
+const user = require('../models/user')
 
 
 clientRoute.use(bodyParser.json())
