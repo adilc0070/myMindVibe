@@ -114,15 +114,19 @@
                          <li class="login-register-btn">
                               <% if(user.name){ %>
                                    <a href="/auth/logout"
-                                        class="smoothScroll" >
-                                        <div
-                                             class="d-inline" style="display: flex; align-items: center; justify-content: space-between;">
-                                             <p class="text-white">
+                                        class="smoothScroll">
+                                        <div class="d-inline"
+                                             style="display: flex; align-items: center; justify-content: space-between;">
+                                             <p
+                                                  class="text-white">
                                                   <%= user.name
                                                        %>
                                              </p>
-                                             <p style="margin-left: 10px;">Logout
-                                                  <i class="fa fa-sign-out"></i>
+                                             <p
+                                                  style="margin-left: 10px;">
+                                                  Logout
+                                                  <i
+                                                       class="fa fa-sign-out"></i>
                                              </p>
                                         </div>
                                    </a>
@@ -1210,7 +1214,8 @@
                                              class="form-control"
                                              id="name"
                                              name="name"
-                                             placeholder="Full Name">
+                                             placeholder="Full Name"
+                                             value="<%= user.name %>">
                                    </div>
                                    <div
                                         class="col-md-6 col-sm-6">
@@ -1220,7 +1225,8 @@
                                              class="form-control"
                                              id="email"
                                              name="email"
-                                             placeholder="Your Email">
+                                             placeholder="Your Email"
+                                             value="<%= user?.email %>">
                                    </div>
                                    <div
                                         class="col-md-6 col-sm-6">
@@ -1308,11 +1314,20 @@
 
                                    <div
                                         class="col-md-12 col-sm-12">
-                                        <button
-                                             type="submit"
-                                             class="form-control"
-                                             id="cf-submit"
-                                             disabled>Submit</button>
+                                        <%if(user.name){ %>
+                                             <button
+                                                  type="submit"
+                                                  class="form-control"
+                                                  id="cf-submit"
+                                                  disabled>Submit</button>
+                                             <%}else{ %>
+                                                  <button
+                                                       data-toggle="modal"
+                                                       data-target="#authModal"
+                                                       class="smoothScroll form-control btn btn-primary"
+                                                       id="cf-submit"
+                                                       >Login</button>
+                                                  <%}%>
                                    </div>
                                    <div
                                         class="col-md-12 col-sm-12">
@@ -1325,39 +1340,39 @@
 
 
                          <script>
-         // Handle form submission
-         document.getElementById('appointment-form').addEventListener('submit', async function (event) {
-              event.preventDefault();
+                                        // Handle form submission
+                                        document.getElementById('appointment-form').addEventListener('submit', async function (event) {
+                                             event.preventDefault();
 
-              const formData = {
-                   name: document.getElementById('name').value,
-                   email: document.getElementById('email').value,
-                   phone: document.getElementById('phone').value,
-                   date: document.getElementById('date').value,
-                   time: document.getElementById('time').value,
-                   department: document.getElementById('department').value,
-                   message: document.getElementById('message').value,
-              };
+                                             const formData = {
+                                                  name: document.getElementById('name').value,
+                                                  email: document.getElementById('email').value,
+                                                  phone: document.getElementById('phone').value,
+                                                  date: document.getElementById('date').value,
+                                                  time: document.getElementById('time').value,
+                                                  department: document.getElementById('department').value,
+                                                  message: document.getElementById('message').value,
+                                             };
 
-              try {
-                   const response = await fetch('/booking/create', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formData),
-                   });
+                                             try {
+                                                  const response = await fetch('/booking/create', {
+                                                       method: 'POST',
+                                                       headers: { 'Content-Type': 'application/json' },
+                                                       body: JSON.stringify(formData),
+                                                  });
 
-                   if (!response.ok) {
-                        const errorData = await response.json();
-                        toastr.error(errorData.error || 'An error occurred. Please try again.');
-                        return;
-                   }
+                                                  if (!response.ok) {
+                                                       const errorData = await response.json();
+                                                       toastr.error(errorData.error || 'An error occurred. Please try again.');
+                                                       return;
+                                                  }
 
-                   const data = await response.json();
-                   toastr.success(data.message || 'Appointment created successfully!');
-              } catch (error) {
-                   toastr.error('An unexpected error occurred. Please try again later.');
-              }
-         });
+                                                  const data = await response.json();
+                                                  toastr.success(data.message || 'Appointment created successfully!');
+                                             } catch (error) {
+                                                  toastr.error('An unexpected error occurred. Please try again later.');
+                                             }
+                                        });
 
                          </script>
                     </div>
@@ -1365,27 +1380,6 @@
           </div>
      </section>
 
-     <script>
-                    function showForm(formType) {
-                         const appointmentForm = document.getElementById('appointment-form');
-                         const loginForm = document.getElementById('login-form');
-                         const registerForm = document.getElementById('register-form');
-
-                         // Hide all forms
-                         appointmentForm.style.display = 'none';
-                         loginForm.style.display = 'none';
-                         registerForm.style.display = 'none';
-
-                         // Show the selected form
-                         if (formType === 'appointment') {
-                              appointmentForm.style.display = 'block';
-                         } else if (formType === 'login') {
-                              loginForm.style.display = 'block';
-                         } else if (formType === 'register') {
-                              registerForm.style.display = 'block';
-                         }
-                    }
-     </script>
 
 
 

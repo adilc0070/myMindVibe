@@ -27,15 +27,18 @@ clientRoute.get('/', async (req,res)=>{
         console.log('userToken',userToken,userToken.userId);
     
         const userData = await user.findById(userToken.userId);
+        console.log('userData',userData);
         res.render('index',{
             user:{
-                name:userData.name
+                name:userData.name,
+                email:userData.email
             }
         })
     }else{
         res.render('index',{
             user:{
-                name:''
+                name:'',
+                details:{}
             }
         })
     }
