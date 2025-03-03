@@ -9,6 +9,9 @@ const bookingRoute = require('./booking');
 const adminController = require('../controller/admin');
 const { authenticateAdminToken, protectorAdmin } = require('../middlewares/authenticator');
 const { listUsers } = require('../controller/users');
+const Booking = require('../models/Booking');
+const userSchema = require('../models/user');
+const Service = require('../models/service');
 const adminRoute = express();
 
 // Middleware
@@ -28,13 +31,30 @@ adminRoute.get('/', protectorAdmin,adminController.getLogin);
 adminRoute.post('/login', adminController.adminLogin);
 adminRoute.post('/register', adminController.adminRegister);
 
-adminRoute.get('/dashboard', authenticateAdminToken, (req, res) => {
-    res.render('dashboard');
+adminRoute.get('/dashboard', authenticateAdminToken,async (req, res) => {
+    const users = await userSchema.find();
+    const bookings = await Booking.find();
+    const services = await Service.find();
+    const todayBookings = await Booking.find({createdAt:{$gte:new Date(new Date().setHours(0,0,0,0))}});
+    res.render('dashboard',{
+        users:users,
+        bookings:bookings,
+        totalUsers:users.length,
+        totalBookings:bookings.length,
+        totalServices:services.length,
+        todayBookings:todayBookings.length,
+        todayAppointments:todayBookings,
+    });
 });
 adminRoute.get('/users', authenticateAdminToken, listUsers);
 
-adminRoute.get('/bookings', authenticateAdminToken, (req, res) => {
-    res.render('booking');
+adminRoute.get('/bookings', authenticateAdminToken, async (req, res) => {
+    const bookings = await Booking.find();
+    const todayBookings = await Booking.find({createdAt:{$gte:new Date(new Date().setHours(0,0,0,0))}});
+    res.render('booking',{
+        bookings:bookings,
+        totalBookings:todayBookings,
+    });
 });
 adminRoute.get('/programs', authenticateAdminToken, (req, res) => {
     res.render('programs');

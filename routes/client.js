@@ -24,10 +24,8 @@ clientRoute.get('/', async (req,res)=>{
     const token = req.cookies.token;
     if(token){
         const userToken = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('userToken',userToken,userToken.userId);
     
         const userData = await user.findById(userToken.userId);
-        console.log('userData',userData);
         res.render('index',{
             user:{
                 name:userData.name,
