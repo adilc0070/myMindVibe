@@ -32,19 +32,23 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
         const { loginEmail, loginPassword } = req.body;
         if (!loginEmail || !loginPassword) {
-            return res.status(400).json({ success: false, message: 'Email and password are required' });
+            res.status(400).json({ success: false, message: 'Email and password are required' });
+            
         }
         const user = await User.findOne({ email:loginEmail });
         if (!user) {
-            return res.status(400).json({ success: false, message: 'User not found' });
+            res.status(400).json({ success: false, message: 'User not found' });
+            
         }
         const isMatch = await bcrypt.compare(loginPassword, user.password);
         if (!isMatch) {
-            return res.status(400).json({ success: false, message: 'Invalid password' });
+            res.status(400).json({ success: false, message: 'Invalid password' });
+            
         }
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
-        res.redirect('/')
+        res.status(200).json({ success: true, message: 'User logged in successfully' });
+         
 
 };
 

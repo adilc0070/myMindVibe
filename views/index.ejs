@@ -543,38 +543,50 @@
            return false;
       }
 
-      function submitLoginForm() {
-           const loginForm = document.getElementById('loginForm');
-           const loginError = document.getElementById('loginError');
-           const submitButton = document.getElementById('cf-submit');
+      async function submitLoginForm() {
+   const loginForm = document.getElementById('loginForm');
+   const loginError = document.getElementById('loginError');
+   const submitButton = document.getElementById('cf-submit');
 
-           if (!validateLoginForm()) {
-                return false;
-           }
+   if (!validateLoginForm()) {
+       return false;
+   }
 
-           submitButton.disabled = true;
-           try {
-                const formData = new FormData(loginForm);
-                const response = await fetch('/auth/login', {
-                     method: 'POST',
-                     headers: {
-                          'Content-Type': 'application/x-www-form-urlencoded',
-                     },
-                     body: new URLSearchParams(formData)
-                });
+   submitButton.disabled = true;
+   try {
+       const formData = new FormData(loginForm);
+       const dataObject = {};
+       formData.forEach((value, key) => {
+           dataObject[key] = value;
+       });
+       const urlParams = new URLSearchParams(dataObject);
 
-                const data = await response.json();
+       const response = await fetch('/auth/login', {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/x-www-form-urlencoded',
+           },
+           body: urlParams
+       });
 
-                if (data.success) {
-                     toastr.success(data.message);
-                     window.location.href = '/';
-                } else {
-                     toastr.error(data.message || 'Login failed');
-                     submitButton.disabled = false;
-                }
-           } catch (error) {
-                console.error('Error:', error);
-                toastr.error('Error submitting form');
+       const data = await response.json();
+
+       if (data.success) {
+           toastr.success(data.message);
+           window.location.href = '/#appointment';
+       } else {
+           toastr.error(data.message || 'Login failed');
+           submitButton.disabled = false;
+       }
+   } catch (error) {
+       console.error('Error:', error);
+       toastr.error('Error submitting form');
+       submitButton.disabled = false;
+   }
+
+   return false;
+}
+
     </script>
 
     <!-- HOME -->
@@ -1248,7 +1260,7 @@
               <div class="copyright-text">
                 <p>
                   Copyright &copy; 2024 NUETRINO CODE STUDIO | Design:
-                  <a href="http://www.tooplate.com" target="_parent"
+                  <a href="https://www.nuetrinoinfosolutions.com/" target="_parent"
                     >NUETRINO CODE STUDIO</a
                   >
                 </p>
@@ -1256,10 +1268,10 @@
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="footer-link">
-                <a href="#">Laboratory Tests</a>
-                <a href="#">Departments</a>
-                <a href="#">Insurance Policy</a>
-                <a href="#">Careers</a>
+                <a href="?">Laboratory Tests</a>
+                <a href="?">Departments</a>
+                <a href="?">Insurance Policy</a>
+                <a href="?">Careers</a>
               </div>
             </div>
             <div class="col-md-2 col-sm-2 text-align-center">
